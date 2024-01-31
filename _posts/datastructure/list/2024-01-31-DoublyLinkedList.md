@@ -113,7 +113,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> Node removeFirst()
+> ## Node removeFirst()
 
 ```java
     public Node removeFirst() {
@@ -192,7 +192,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> Node remove(int index)
+> ## Node remove(int index)
 
 ```java
     public Node remove(int index) {
