@@ -9,7 +9,7 @@ tags: [data, cs] # TAG는 반드시 소문자로 이루어져야함!
 
 
 
-> 배열의 공간 낭비를 피할 수 있는 자료구조. (동적 할당,Node 사용)
+> ## 배열의 공간 낭비를 피할 수 있는 자료구조. (동적 할당,Node 사용)
 
 ```java
 public class Node {
@@ -23,7 +23,7 @@ public class Node {
 
 <br><br>
 
-> LinkedList의 기본 구성
+> ## LinkedList의 기본 구성
 
 ```java
 public class LinkedList {
@@ -51,7 +51,7 @@ public class LinkedList {
 
 <br><br>
 
-> 생성자(Constructor) : LinkedList 생성시 기본 노드를 설정해준다.
+> ## 생성자(Constructor) : LinkedList 생성시 기본 노드를 설정해준다.
 
 ```java
     public LinkedList(int value) {
@@ -64,7 +64,7 @@ public class LinkedList {
 
 <br><br>
 
-> 추가(append) : 리스트의 tail에 생성된 노드를 넣고 tail을 재설정한다.
+> ## 추가(append) : 리스트의 tail에 생성된 노드를 넣고 tail을 재설정한다.
 
 ```java
     public void append(int value) {
@@ -81,7 +81,7 @@ public class LinkedList {
 
 <br><br>
 
-> head 삭제(removeFirst()) : head 요소를 삭제하고 head 를 재설정 한다.
+> ## head 삭제(removeFirst()) : head 요소를 삭제하고 head 를 재설정 한다.
 
 ```java
     public Node removeFirst() {
@@ -103,7 +103,7 @@ public class LinkedList {
 
 <br><br>
 
-> tail 삭제(removeLast()) : tail 요소를 삭제하고 재설정 한다.
+> ## tail 삭제(removeLast()) : tail 요소를 삭제하고 재설정 한다.
 
 ```java
     public Node removeLast() {
@@ -130,7 +130,7 @@ public class LinkedList {
 
 <br><br>
 
-> Node get(int index) : 특정 index에 노드를 가져온다
+> ## Node get(int index) : 특정 index에 노드를 가져온다
 
 ```java
     public Node get(int index) {
@@ -150,7 +150,7 @@ public class LinkedList {
 
 <br><br>
 
-> void set(int index, int value) : 특정 노드의 값을 변경한다.
+> ## void set(int index, int value) : 특정 노드의 값을 변경한다.
 
 ```java
     public void set(int index, int value) {
@@ -160,7 +160,7 @@ public class LinkedList {
 
 <br><br>
 
-> void insert(int index, int value) : 특정 index에 값을 추가한다.
+> ## void insert(int index, int value) : 특정 index에 값을 추가한다.
 
 ```java
     public void insert(int index, int value) {
@@ -183,7 +183,7 @@ public class LinkedList {
 
 <br><br>
 
-> void prepend(int value) : 리스트의 맨 앞에 Node를 추가한다.
+> ## void prepend(int value) : 리스트의 맨 앞에 Node를 추가한다.
 
 ```java
     public void prepend(int value) {
@@ -202,7 +202,7 @@ public class LinkedList {
 
 <br><br>
 
-> Node remove(int value) : 특정 index의 노드를 삭제한다.
+> ## Node remove(int value) : 특정 index의 노드를 삭제한다.
 
 ```java
     public Node remove(int index) {
@@ -225,7 +225,7 @@ public class LinkedList {
 
 <br><br>
 
-> void reverse() : 리스트를 뒤집는다.
+> ## void reverse() : 리스트를 뒤집는다.
 
 ```java
     public void reverse() {
