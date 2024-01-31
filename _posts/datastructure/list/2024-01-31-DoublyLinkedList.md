@@ -8,7 +8,7 @@ tags: [data, cs] # TAG는 반드시 소문자로 이루어져야함!
 
 [정리 코드](https://github.com/AngryPig123/datasutructure/tree/double-linked-list){:target="\_blank"}
 
-> ## Node에 두개의 prev, next 포인터를 가지고 있는 리스트
+> Node에 두개의 prev, next 포인터를 가지고 있는 리스트
 
 ```java
 public class Node {
@@ -23,7 +23,7 @@ public class Node {
 
 <br><br>
 
-> ## DoublyLinkedList의 기본 구성
+> DoublyLinkedList의 기본 구성
 
 ```java
 public class DoublyLinkedList {
@@ -52,7 +52,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## append(int value)
+> append(int value)
 
 ```java
     public void append(int value) {
@@ -71,7 +71,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## Node removeLast()
+> Node removeLast()
 
 ```java
     public Node removeLast() {
@@ -94,7 +94,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## void prepend(int value)
+> void prepend(int value)
 
 ```java
     public void prepend(int value) {
@@ -113,7 +113,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## Node removeFirst()
+> Node removeFirst()
 
 ```java
     public Node removeFirst() {
@@ -135,7 +135,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## Node get(int index)
+> Node get(int index)
 
 ```java
     public Node get(int index) {
@@ -159,7 +159,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## void set(int index, int value)
+> void set(int index, int value)
 
 ```java
     public void set(int index, int value) {
@@ -170,7 +170,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## void insert(int index, int value)
+>  void insert(int index, int value)
 
 ```java
     public void insert(int index, int value) {
@@ -192,7 +192,7 @@ public class DoublyLinkedList {
 
 <br><br>
 
-> ## Node remove(int index)
+> Node remove(int index)
 
 ```java
     public Node remove(int index) {
