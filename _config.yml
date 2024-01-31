@@ -19,9 +19,9 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy 설치 테스트                          # the main title
+title: 화난돼지 블로그                          # the main title
 
-tagline: chirpy 설치하면서 테스트 중입니다.   # it will display as the sub-title
+tagline: 기록용 블로그   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   focuschange, chirpy test
@@ -30,20 +30,20 @@ description: >-                        # used by seo meta and the atom feed
 url: 'https://angrypig123.github.io/'
 
 github:
-  username: focuschange-test
+  username: Angrypig123
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username:             # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: focuschange test
-  email: focuschange.kim@gmail.com
+  name: angrypig back-end
+  email: shguddnr2@naver.com
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://github.com/AngryPig123      # change to your twitter homepage
+    - https://github.com/AngryPig123       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
