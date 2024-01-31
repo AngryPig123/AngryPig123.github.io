@@ -8,6 +8,8 @@ pin: true
 math: true
 mermaid: true
 image:
-  path: /assets/images/java/thumbnail.png
+  path: 
 ---
-testtsetest
+
+
+- 안녕하세요 test 블로그입니다.
