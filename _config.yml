@@ -24,7 +24,7 @@ title: 화난돼지 블로그                          # the main title
 tagline: 기록용 블로그   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  focuschange, chirpy test
+  back-end, BackEnd, Spring, Spring Boot
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://angrypig123.github.io/'
@@ -33,7 +33,7 @@ github:
   username: Angrypig123
 
 twitter:
-  username:             # change to your twitter username
+  username: Angrypig123            # change to your twitter username
 
 social:
   # Change to your full name.
@@ -81,7 +81,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: https://github.com/AngryPig123/angrypig123.github.io/assets/86225268/60c8eac8-a33e-455d-aae7-c7a72051c2e7
 
 # boolean type, the global switch for ToC in posts.
 toc: true
