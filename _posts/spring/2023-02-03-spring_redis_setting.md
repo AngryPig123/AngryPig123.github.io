@@ -13,7 +13,9 @@ tags: [back-end, spring, redis, docker redis]
 
 > 개발 환경 : Spring boot 3.2.2, java17
 
+
 <h2> 의존성  </h2>
+
  ```java
   dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -26,7 +28,9 @@ tags: [back-end, spring, redis, docker redis]
 ```
 <br>
 
+
 > docker-redis 구축 : [docker redis 구축 방법](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스"){:target="\_blank"}
+
 
 
 <br>
