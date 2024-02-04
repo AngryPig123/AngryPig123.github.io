@@ -13,7 +13,7 @@ tags: [back-end, spring, redis, docker redis]
 
 > 개발 환경 : Spring boot 3.2.2, java17
 
-## 의존성 ##
+<h2> 의존성  </h2>
  ```java
   dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -26,7 +26,7 @@ tags: [back-end, spring, redis, docker redis]
 ```
 <br>
 
-> docker-redis 구축 : [***docker redis 구축 방법***](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스"){:target="\_blank"}
+> docker-redis 구축 : [docker redis 구축 방법](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스"){:target="\_blank"}
 
 
 <br>
@@ -105,7 +105,8 @@ public class RedisConfig {
 <br>
 
 
-### spring redis entity ###
+<h2> spring redis entity </h2>
+
 ```java
 @Getter
 @Setter
@@ -135,7 +136,8 @@ public class RedisUserSession {
 
 <br>
 
-### spring redis repository ###
+<h2> spring redis repository </h2>
+
 ```java
 import org.spring.redis.entity.redis.RedisUserSession;
 import org.springframework.data.repository.CrudRepository;
@@ -145,7 +147,8 @@ public interface RedisUserSessionRepository extends CrudRepository<RedisUserSess
 
 <br>
 
-### spring redis service ###
+<h2> spring redis service </h2>
+
 ```java
 
 public interface RedisUserSessionService {
@@ -168,7 +171,8 @@ public class RedisUserSessionServiceImpl implements RedisUserSessionService {
 
 <br>
 
-### redis service test ###
+<h2> redis service test </h2>
+
 ```java
 @SpringBootTest
 public class RedisRepositoryTest {
@@ -190,16 +194,19 @@ public class RedisRepositoryTest {
 
 ```
 
-## 실행 전 redis 상태 ##
+<h2> 실행 전 redis 상태 </h2>
+
 ![실행 전](https://github.com/AngryPig123/angrypig123.github.io/assets/86225268/1a722de6-3af6-4c67-91c2-644091ef19a1)
 
-## 실행 후 redis 상태 ##
+<h2> 실행 후 redis 상태 </h2>
+
 ![실행 후](https://github.com/AngryPig123/angrypig123.github.io/assets/86225268/349166c2-9f56-49a1-8f30-105ba7f28138)
 
-## redis gui 로 본 내부 상태 ##
+<h2> redis gui 로 본 내부 상태 </h2>
+
 ![내부 상태](https://github.com/AngryPig123/angrypig123.github.io/assets/86225268/fdd2bb2b-a1c9-486f-9723-a0888f2fd608)
 
-> entity에 설정한 RedisHash value 값을 SET로 저장하고,<br> 
-> @Id값으로 자동 생성된 Hash 값을 더하여 value:@Id 를 key 값으로 하는 HASH 형태로 저장한다. <br>
+> entity에 설정한 RedisHash value 값을 key, @Id값을 리스트로 저장하고,<br> 
+> value:@Id 를 key, 내부 필드를 value로 하는 HASH 형태로 저장한다. <br>
 
-### ToDO : Redis로 회원가입, 로그인, 로그아웃 기능 구현. ###
+<h2> ToDO : Redis로 회원가입, 로그인, 로그아웃 기능 구현. </h2>
