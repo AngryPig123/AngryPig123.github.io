@@ -6,25 +6,28 @@ categories: [Spring, Redis]
 tags: [back-end, spring, redis, docker redis]
 ---
 
+[정리 코드](https://github.com/AngryPig123/spring-redis/tree/setting){:target="\_blank"}
+
 > Spring Redis 연동하기
 
-[docker redis setting](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스")
 
 > 개발 환경 : Spring boot 3.2.2, java17
-> ```java
->  dependencies {
->    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
->    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
->    implementation 'org.springframework.boot:spring-boot-starter-web'
->    compileOnly 'org.projectlombok:lombok'
->    annotationProcessor 'org.projectlombok:lombok'
->    testImplementation 'org.springframework.boot:spring-boot-starter-test'
->  }
 
+## 의존성 ##
+ ```java
+  dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  }
+```
 <br>
 
-> docker-redis 구축 : [***docker redis 구축 방법***](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스")
-![docker-redis](https://github.com/AngryPig123/angrypig123.github.io/assets/86225268/6e7f3dc7-9320-4e1e-8146-103df6da0421)
+> docker-redis 구축 : [***docker redis 구축 방법***](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스"){:target="\_blank"}
+
 
 <br>
 
