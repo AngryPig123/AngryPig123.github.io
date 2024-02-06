@@ -20,7 +20,6 @@ tags: [ java, reflection, redis, jedis, spring ]
 
 ```java
 public interface MyRedisService {
-  <T> T hSet(String key, T t);    //  hash 를 저장한다.
 
   <T> T hGetAll(String key);  //  hash 에 모든 정보를 가져온다.
 
