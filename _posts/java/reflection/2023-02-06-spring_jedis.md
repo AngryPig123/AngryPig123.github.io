@@ -1,7 +1,7 @@
 ---
-title: Spring Redis
-description: 스프링 레디스
-date: 2024-02-04
+title: Reflection
+description: 자바 제디스, 리플렉션
+date: 2024-02-06
 categories: [ Java, Reflection ]
 tags: [ java, reflection, redis, jedis, spring ]
 ---
