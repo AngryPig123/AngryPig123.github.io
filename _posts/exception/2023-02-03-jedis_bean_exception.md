@@ -98,7 +98,7 @@ Caused by: javax.management.InstanceAlreadyExistsException: MXBean already regis
 <br>
 
 > 해결 방법 : 여러 사이트를 돌아다니면서 테스트를 해보았으나 <br>
-> 결국, JMX를 이용한 JedisPoll 모니터링을 포기하고 해당 코드 추가 : poolConfig.setJmxEnabled(false);
+> 결국, JMX를 이용한 JedisPool 모니터링을 포기하고 해당 코드 추가 : poolConfig.setJmxEnabled(false);
 
 ```java
 
