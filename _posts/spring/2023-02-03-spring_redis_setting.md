@@ -14,7 +14,8 @@ tags: [back-end, spring, redis, docker redis]
 > 개발 환경 : Spring boot 3.2.2, java17
 
 <h2> 의존성  </h2>
- ```java
+
+```text
   dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -24,6 +25,7 @@ tags: [back-end, spring, redis, docker redis]
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
   }
 ```
+
 <br>
 
 > docker-redis 구축 : [docker redis 구축 방법](https://angrypig123.github.io/posts/Redis(1)/ "도커레디스"){:target="\_blank"}
@@ -53,7 +55,7 @@ tags: [back-end, spring, redis, docker redis]
 @Slf4j
 @Configuration
 public class RedisConfig {
-    
+
     @Value("${data.redis.host}")
     private String HOST;
 
@@ -89,7 +91,7 @@ public class RedisConfig {
 
         return redisTemplate;
     }
-    
+
 }
 ```
 
@@ -206,7 +208,7 @@ public class RedisRepositoryTest {
 
 ![내부 상태](https://github.com/AngryPig123/angrypig123.github.io/assets/86225268/fdd2bb2b-a1c9-486f-9723-a0888f2fd608)
 
-> entity에 설정한 RedisHash value 값을 key, @Id값을 리스트로 저장하고,<br> 
+> entity에 설정한 RedisHash value 값을 key, @Id값을 리스트로 저장하고,<br>
 > value:@Id 를 key, 내부 필드를 value로 하는 HASH 형태로 저장한다. <br>
 
 <h2> ToDO : Redis로 회원가입, 로그인, 로그아웃 기능 구현. </h2>
