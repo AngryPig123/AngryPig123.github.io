@@ -2,7 +2,7 @@
 title: JedisPool Bean 등록 에러
 description: 제디스 커넥션 풀 설정 등록
 date: 2024-02-07
-categories: [ Spring, Jedis ]
+categories: [ Exception, Spring Jedis ]
 tags: [ spring framework, bean registration, jedis pool, MXbean already ]    # TAG는 반드시 소문자로 이루어져야함!
 ---
 
