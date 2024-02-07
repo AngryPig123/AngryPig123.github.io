@@ -1,5 +1,5 @@
 ---
-title: Spring Redis
+title: Jedis
 description: 스프링 레디스
 date: 2024-02-04
 categories: [ Java, Reflection ]
