@@ -1,7 +1,7 @@
 ---
 title: Discrete Mathematics
 description: 이산수학
-date: 2024-02-11
+date: 2024-02-11T12:00:000
 categories: [ computer science, logic and proofs ]
 tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져야함!
 ---
