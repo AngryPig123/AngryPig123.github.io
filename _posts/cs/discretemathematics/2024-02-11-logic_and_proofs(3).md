@@ -20,7 +20,7 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
-<h2> Quantifiers</h2>
+<h2> Quantifiers </h2>
 
 - Quantifiers : 양화(공식을 만족하는 개인의 수를 지정하는 연산자)
   - Universal quantification : 보편 양화사
@@ -98,8 +98,6 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 - Conjunctive Normal Form (CNF)
   - (p ⇒ q) ∧ ￢q ≡ (￢p ∨ q) ∧ ￢q
-
-- 덧셈 논리
   -
   | p | q | c(carry) | s |
     |---|---|----------|---|
@@ -108,8 +106,8 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
   | 0 | 1 | 0        | 1 |
   | 0 | 0 | 0        | 0 |
   - c ≡ p ∧ q
-  - s ≡ p &#x2295; q
-  - 하지만 normal form 에서는 &#x2295; 사용 불가.
+  - s ≡ p ⊕ q
+  - 하지만 normal form 에서는 ⊕ 사용 불가.
     - 해결책 : ￢(p ⇒ q) ∨ ￢(q ⇒ p)
       - ￢(￢p ∨ q) ≡ p ∧ ￢q
       - ￢(￢q ∨ p) ≡ q ∧ ￢p
@@ -142,13 +140,13 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 <br>
 
 - minterm 의 or 연산과 똑같은 결과를 내는 다른 개념
-  - ex) p &#x2295; q
+  - ex) p ⊕ q
 
-| p | q | p &#x2295; q | x | y | x ∧ y |
-|---|---|--------------|---|---|-------|
-| 1 | 1 | 0            | 0 | 1 | 0     |
-| 1 | 0 | 1            | 1 | 1 | 1     |
-| 0 | 1 | 1            | 1 | 1 | 1     |
-| 0 | 0 | 0            | 1 | 0 | 0     |
+| p | q | p ⊕ q | x | y | x ∧ y |
+|---|---|-------|---|---|-------|
+| 1 | 1 | 0     | 0 | 1 | 0     |
+| 1 | 0 | 1     | 1 | 1 | 1     |
+| 0 | 1 | 1     | 1 | 1 | 1     |
+| 0 | 0 | 0     | 1 | 0 | 0     |
 
 
