@@ -1,5 +1,5 @@
 ---
-title: Discrete Mathematics
+title: Discrete Mathematics(1)
 description: 이산수학
 date: 2024-02-11T12:00:000
 categories: [ computer science, logic and proofs ]
