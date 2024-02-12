@@ -1,11 +1,10 @@
 ---
-title: Discrete Mathematics
+title: Discrete Mathematics(2)
 description: 이산수학
 date: 2024-02-11T14:00:000
 categories: [ computer science, logic and proofs ]
 tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져야함!
 ---
-
 
 <h2> Precedence of Operator : 연산자 우선순위 </h2>
 
@@ -23,7 +22,6 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 | ⇔        | 5          |
 
 <br>
-
 
 <h2> ex) (p ∨ ￢q) ⇒ (p ∧ q) </h2>
 
@@ -103,3 +101,4 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
   - (￢p ∨ p) ∨ (￢q ∨ q)
   - (T) ∨ (T)
   - T
+
