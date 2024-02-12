@@ -87,9 +87,9 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
-- <h2> Normal Forms </h2>
+<h2> Normal Forms </h2>
 
-  - true or false 를 가지고 얻고 싶은 모든 케이스는 and, or, not 으로 만들 수 있다.
+- true or false 를 가지고 얻고 싶은 모든 케이스는 and, or, not 으로 만들 수 있다.
 
 - Disjunctive Normal Form (DNF)
   - (p ⇒ q) ∧ ￢q ≡ (￢p ∧ ￢q) ∨ (q ∧ ￢q)
@@ -101,7 +101,7 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 - 덧셈 논리
   -
   | p | q | c(carry) | s |
-                        |---|---|----------|---|
+                          |---|---|----------|---|
   | 1 | 1 | 1        | 0 |
   | 1 | 0 | 0        | 1 |
   | 0 | 1 | 0        | 1 |
