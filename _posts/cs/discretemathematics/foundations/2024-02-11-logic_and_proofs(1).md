@@ -23,7 +23,7 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
-<h2> Conjunction(and, ∧) </h2>
+<h2> Conjunction(and, ∧) : 논리곱 </h2>
 
 > and 연산
 
@@ -36,7 +36,7 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
-<h2> Disjunction(or, ∨) </h2>
+<h2> Disjunction(or, ∨) : 논리합 </h2>
 
 > or 연산
 
@@ -49,7 +49,24 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
-<h2> Condition Statements </h2>
+<h2> Exclusive disjunction(⊕) : 배타적 논리합 </h2>
+
+> xor, 배타적 논리합
+
+- 두개의 명제가 주어 졌을 때 둘중 하나만 (T)인 경우에 연산 결과를 T로한다.
+  - p ⊕ q ≡ (p ∧ ￢q) ∨ (￢p ∧ q)
+
+| p | q | (p ∧ ￢q) ∨ (￢p ∧ q) | p ⊕ q |
+|---|---|---------------------|-------|
+| T | T | F                   | F     |
+| T | F | T                   | T     |
+| F | T | T                   | T     |
+| F | F | F                   | F     |
+
+<h2> Condition Proposition : 조건명제 </h2>
+
+- 명제 p와 q가 있을 때, 명제 p가 조건의 역할을 수행하고 명제q가 결론의 역할을 수행하는 경우 <br>
+  p와 q의 합성명제를 조건명제라고 하고 p ⇒ q 라고 표기한다.
 
 - 가정어구 : p ⇒ q
   - if p then q : p(가정, hypothesis), q(결과, conclusion)
@@ -66,7 +83,17 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
-<h2> BiCondition Statements </h2>
+<h2> 필요 조건과 충분 조건 : necessary and sufficient condition </h2>
+
+- p와 q가 명제일 때
+  - "if q, then q"형식으로 표현할 수 있으면, p가 일어나면 항상 q가 일어나는 것을 보장한다는 의미
+    에서 p를 q의 충분 조건이라고 한다.
+  - "if not p, then not q"형식으로 표현항 수 있으면, q가 일어나는 데 필요하다는 의미
+    에서, p를 q의 필요조건이라고한다
+
+- 조건 명제 p ⇒ q, 에서 p를 q의 충분조건이라고 하고, q를 p 의 필요 조건이라고 한다.
+
+<h2> BiCondition Statements : 쌍조건 명제 </h2>
 
 - 이중 조건문 : p ⇔ q
   - if p and only if q
