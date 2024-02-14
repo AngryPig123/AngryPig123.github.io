@@ -1,5 +1,5 @@
 ---
-title: Discrete Mathematics(3)
+title: Discrete Mathematics(6)
 description: 이산수학
 date: 2024-02-14T12:00:000
 categories: [ computer science, proofs ]
