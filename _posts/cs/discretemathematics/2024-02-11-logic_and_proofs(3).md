@@ -20,24 +20,37 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
 
 <br>
 
+<h2> propositional function : 명제 함수 </h2>
+
+- 변수의 값에 의해 참과 거짓을 구변할 수 있는 문장이나 수식
+  - 명제함수에 값을 지정하는 방법
+    - 각 변수에 특정한 값을 부여
+    - Quantifiers를 이용해 변수의 값을 제한.
+      - 전체 한정자(∀, universal quantifier), 존재한정자(∃, existential quantifier)
+
 <h2> Quantifiers </h2>
 
-- Quantifiers : 양화(공식을 만족하는 개인의 수를 지정하는 연산자)
-  - Universal quantification : 보편 양화사
+- Quantifiers : 한정자(공식을 만족하는 개인의 수를 지정하는 연산자)
+  - Universal quantification : 전체 한정자
     - ∀xP(x)
     - "주어진 어떠한 ~에 대해서도", "모든 ~에 대해서"
-  - Existential quantification : 존재 양화사
+  - Existential quantification : 존재 한정자
     - ∃xP(x)
     - 주어진 술어를 만족시키는 객체가 논의 영역에 적어도 하나 존재함.
-  - Precedence of Quantifiers : 양화사의 우선 순위
+  - Precedence of Quantifiers : 한정자의 우선 순위
     - 모든 논리 연산자에 대해 우선 순위를 가지고 있다.
     - ∀xP(x) ∨ Q(x) ≡ (∀xP(x)) ∨ Q(x)
+  - 하나의 명제 함수에 여러 한정자가 사용될 경우 해석에 주의, 서로 다른 한정자가 사용된다면 순서를 지켜야 한다.
+  - 여러 한정자가 사용된 명제 한수가 부정될 경우 다양한 해석이 존재
+    - ``` text
+      ￢∀x ∃y ∀z P(x,y,z) ≡ ∃x ￢∃y ∀z P(x,y,z) ≡ ∃x ∀y ￢∀z P(x,y,z) ≡ ∃x ∀y ∃z￢ P(x,y,z)
+      ```
 
 <br>
 
 <h2> Logical Equivalences Involving Quantifiers </h2>
 
-- 수량자와 관련된 논리적 동등성
+- 한정자 관련된 논리적 동등성
 
 | statement       | equivalent statement |
 |-----------------|----------------------|

@@ -102,3 +102,31 @@ tags: [ cs, truth table, kocw ]    # TAG는 반드시 소문자로 이루어져�
   - (T) ∨ (T)
   - T
 
+<br>
+
+<h2> 항진명제와 모순명제 : tautology, contradiction </h2>
+
+- 항진명제(tautology)
+  - 항상 참(T)인 명제를 항진명제라고 한다.
+    - p ⇒ p
+    - p ∨ ￢p
+    - p ∧ q ⇒ p ∧ q
+
+
+- 모순명제(contradiction)
+  - 항상 거짓(F)인 명제를 모순명제라고 한다.
+    - p ∧ ~p
+    - (p ∧ q) ∧ ￢p
+    - (p ⇔ q) ∧ (p ⊕ q)
+
+
+
+
+
+
+
+
+
+
+
+
