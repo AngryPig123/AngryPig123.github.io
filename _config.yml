@@ -60,12 +60,12 @@ social:
 #    proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
 #    cache_path:       # the local PV cache data, friendly to visitors from GFW region
 
-# Analytics
-analytics:
-  provider               : "google-gtag" # false (default), "google", "google-universal", "google-gtag", "custom"
-  google:
-    tracking_id          : "G-KDXVLQW78W"
-    anonymize_ip         : # true, false (default)
+google_analytics:
+  id: 'G-KDXVLQW78Wg'              # fill in your Google Analytics ID
+  # Google Analytics pageviews report settings
+  pv:
+    proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
+    cache_path:       # the local PV cache data, friendly to visitors from GFW region
 
 # Prefer color scheme setting.
 #
