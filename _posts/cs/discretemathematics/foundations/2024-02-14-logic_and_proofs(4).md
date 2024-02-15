@@ -1,8 +1,8 @@
 ---
-title: Discrete Mathematics(3)
+title: Discrete Mathematics(6)
 description: 이산수학
 date: 2024-02-14T12:00:000
-categories: [ computer science, proofs ]
+categories: [ computer science, logic and proofs ]
 tags: [ cs, axiom, proof, theorem, kocw ]    # TAG는 반드시 소문자로 이루어져야함!
 ---
 
