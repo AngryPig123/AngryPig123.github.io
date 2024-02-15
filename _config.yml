@@ -61,7 +61,7 @@ social:
 #    cache_path:       # the local PV cache data, friendly to visitors from GFW region
 
 google_analytics:
-  id: 'G-KDXVLQW78Wg'              # fill in your Google Analytics ID
+  id: 'G-KDXVLQW78W'              # fill in your Google Analytics ID
   # Google Analytics pageviews report settings
   pv:
     proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
