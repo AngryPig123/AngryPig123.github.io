@@ -62,6 +62,40 @@
     <option name="XML" value="false" />
   </context>
 </template>
+<template name="ceiling" value="⌈⌉" description="천정함수" toReformat="false" toShortenFQNames="true">
+  <context>
+    <option name="ANY_OPENAPI_JSON_FILE" value="false" />
+    <option name="ANY_OPENAPI_YAML_FILE" value="false" />
+    <option name="Angular" value="false" />
+    <option name="CSS" value="false" />
+    <option name="CUCUMBER_FEATURE_FILE" value="false" />
+    <option name="ECMAScript6" value="false" />
+    <option name="EDU_TASK_DESCRIPTION_HINT" value="false" />
+    <option name="GENERAL_JSON_FILE" value="false" />
+    <option name="GENERAL_YAML_FILE" value="false" />
+    <option name="GROOVY" value="false" />
+    <option name="HTML" value="false" />
+    <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+    <option name="JAVA_CODE" value="false" />
+    <option name="JAVA_SCRIPT" value="false" />
+    <option name="JSON" value="false" />
+    <option name="JSP" value="false" />
+    <option name="KOTLIN" value="false" />
+    <option name="MAVEN" value="false" />
+    <option name="OTHER" value="true" />
+    <option name="PROTO" value="false" />
+    <option name="PROTOTEXT" value="false" />
+    <option name="Properties" value="false" />
+    <option name="QUTE" value="false" />
+    <option name="REQUEST" value="false" />
+    <option name="SHELL_SCRIPT" value="false" />
+    <option name="SQL" value="false" />
+    <option name="TypeScript" value="false" />
+    <option name="Vue" value="false" />
+    <option name="XML" value="false" />
+    <option name="XML_ATTRIBUTE" value="false" />
+  </context>
+</template>
 <template name="composition" value="∘" description="합성기호" toReformat="false" toShortenFQNames="true">
   <context>
     <option name="ANY_OPENAPI_JSON_FILE" value="false" />
@@ -292,6 +326,40 @@
     <option name="TypeScript" value="false" />
     <option name="Vue" value="false" />
     <option name="XML" value="false" />
+  </context>
+</template>
+<template name="floor" value="⌊⌋" description="바닥함수" toReformat="false" toShortenFQNames="true">
+  <context>
+    <option name="ANY_OPENAPI_JSON_FILE" value="false" />
+    <option name="ANY_OPENAPI_YAML_FILE" value="false" />
+    <option name="Angular" value="false" />
+    <option name="CSS" value="false" />
+    <option name="CUCUMBER_FEATURE_FILE" value="false" />
+    <option name="ECMAScript6" value="false" />
+    <option name="EDU_TASK_DESCRIPTION_HINT" value="false" />
+    <option name="GENERAL_JSON_FILE" value="false" />
+    <option name="GENERAL_YAML_FILE" value="false" />
+    <option name="GROOVY" value="false" />
+    <option name="HTML" value="false" />
+    <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+    <option name="JAVA_CODE" value="false" />
+    <option name="JAVA_SCRIPT" value="false" />
+    <option name="JSON" value="false" />
+    <option name="JSP" value="false" />
+    <option name="KOTLIN" value="false" />
+    <option name="MAVEN" value="false" />
+    <option name="OTHER" value="true" />
+    <option name="PROTO" value="false" />
+    <option name="PROTOTEXT" value="false" />
+    <option name="Properties" value="false" />
+    <option name="QUTE" value="false" />
+    <option name="REQUEST" value="false" />
+    <option name="SHELL_SCRIPT" value="false" />
+    <option name="SQL" value="false" />
+    <option name="TypeScript" value="false" />
+    <option name="Vue" value="false" />
+    <option name="XML" value="false" />
+    <option name="XML_ATTRIBUTE" value="false" />
   </context>
 </template>
 <template name="function" value="ｆ" description="함수" toReformat="false" toShortenFQNames="true">
