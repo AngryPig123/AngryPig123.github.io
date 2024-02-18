@@ -172,7 +172,7 @@ logging:
 ```java
 
 @DataJpaTest
-@TestPropertySource(locations = "classpath:application-test.yaml")
+@ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SpringBootJpaTestSlice {
   @Autowired
@@ -197,7 +197,7 @@ public class SpringBootJpaTestSlice {
 ```java
 
 @DataJpaTest
-@TestPropertySource(locations = "classpath:application-test.yaml")
+@ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public abstract class Common {
 }
