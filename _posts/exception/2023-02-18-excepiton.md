@@ -1,5 +1,5 @@
 ---
-title: @DataJpaTest 내장 DB 설정 에러
+title: 내장 DB 설정 에러(feat.@DataJpaTest)
 description: 내장 DB 에러.
 date: 2024-02-18T15:30:000
 categories: [ Exception, Spring ]
