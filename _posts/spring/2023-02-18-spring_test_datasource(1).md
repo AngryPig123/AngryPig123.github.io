@@ -67,3 +67,34 @@ public class SpringBootJpaTestSliceTest extends Common {
 public @interface Commit {
 }
 ```
+
+<h2> 수정 코드 </h2>
+
+```java
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+public class SpringBootJpaTestSliceTest extends Common {
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    @Test
+    @Commit
+    @Order(1)
+    void testJpaTestSlice() {
+        long countBefore = bookRepository.count();
+        Assertions.assertEquals(countBefore, 0L);
+        bookRepository.save(new Book("my book", "123210ws", "self"));
+        long countAfter = bookRepository.count();
+        Assertions.assertTrue(countBefore != countAfter);
+        Assertions.assertEquals(countAfter, 1L);
+    }
+
+    @Test
+    @Order(2)
+    void testJpaTestSpliceTransaction() {
+        long count = bookRepository.count();
+        Assertions.assertEquals(count, 1L);
+    }
+
+}
+```
