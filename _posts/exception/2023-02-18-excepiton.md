@@ -1,8 +1,8 @@
 ---
-title: JedisPool Bean 등록 에러
-description: 제디스 커넥션 풀 설정 등록
+title: @DataJpaTest 내장 DB 설정 에러
+description: 내장 DB 에러.
 date: 2024-02-18T15:30:000
-categories: [ Exception, Spring DataSource ]
+categories: [ Exception, Spring ]
 tags: [ spring framework, test data source ]    # TAG는 반드시 소문자로 이루어져야함!
 ---
 
