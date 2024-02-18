@@ -48,13 +48,13 @@ public class SpringBootJpaTestSliceTest extends Common {
 
 <h2> @Rollback </h2>
 
-- 변경 사항을 되돌리는 어노테이션
+- 변경 사항을 되돌리는 어노테이션 : ```import org.springframework.test.annotation.Rollback```
   - @Rollback(value = false) : 롤백 기능을 off
   - @Rollback(value = true) : 롤백 기능을 on (기본 설정)
 
 <h2> @Commit </h2>
 
-- 변경 사항을 적용시키는 어노테이션
+- 변경 사항을 적용시키는 어노테이션 : ```import org.springframework.test.annotation.Commit```
   - 코드를 보면 @Rollback(false)가 되어 있는걸 볼 수 있다.
 
 ```java
