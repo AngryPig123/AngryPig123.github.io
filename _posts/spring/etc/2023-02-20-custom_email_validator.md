@@ -198,32 +198,32 @@ public class ValidatorTestController {
 
 - ```isBadRequest()``` : HttpStatus 검증
 - ```is("is not null!!")``` : 검증 메세지 확인
--
 
 ```java
+
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ValidatorTest {
 
-    @Autowired
-    ValidatorTestController validatorTestController;
+  @Autowired
+  ValidatorTestController validatorTestController;
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+  @Autowired
+  private ObjectMapper objectMapper;
 
-    @Test
-    public void custom_email_validator_test() throws Exception {
-        ValidatorTestController.TestReq testReq = new ValidatorTestController.TestReq("");
-        String req = objectMapper.writeValueAsString(testReq);
-        mockMvc.perform(MockMvcRequestBuilders.post("/validator")
-                        .content(req)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.email", Is.is("is not null!!")));
-    }
+  @Test
+  public void custom_email_validator_test() throws Exception {
+    ValidatorTestController.TestReq testReq = new ValidatorTestController.TestReq("");
+    String req = objectMapper.writeValueAsString(testReq);
+    mockMvc.perform(MockMvcRequestBuilders.post("/validator")
+        .content(req)
+        .contentType(MediaType.APPLICATION_JSON_VALUE))
+      .andExpect(MockMvcResultMatchers.status().isBadRequest())
+      .andExpect(MockMvcResultMatchers.jsonPath("$.email", Is.is("is not null!!")));
+  }
 }
 ```
 
