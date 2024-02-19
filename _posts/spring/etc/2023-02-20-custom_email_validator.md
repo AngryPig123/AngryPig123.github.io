@@ -70,7 +70,7 @@ public class EmailValidator extends AbstractEmailValidator<Email> {
 
 <br>
 
-<h2> @NotNullEmail : @interface 클래스 </h2>
+<h2> Custom @NotNullEmail : @interface 클래스 </h2>
 
 ```java
 
