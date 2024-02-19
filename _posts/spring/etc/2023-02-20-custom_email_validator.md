@@ -197,7 +197,7 @@ public class ValidatorTestController {
 <h2> 테스트 코드 </h2>
 
 - ```.andExpect(MockMvcResultMatchers.status().isBadRequest())``` : HttpStatus 검증
-- ```.andExpect(MockMvcResultMatchers.jsonPath("$.email", Is.is("is not null!!")))``` : 검증 메세지 확인
+- ```.andExpect(MockMvcResultMatchers.jsonPath("\$.email", Is.is("is not null!!")))``` : 검증 메세지 확인
 -
 
 ```java
