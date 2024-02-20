@@ -1,7 +1,7 @@
 ---
 title: Custom Method Argument Not Valid Exception
 description: 사용자 정의 예외처리
-date: 2024-02-20T00:30:000
+date: 2024-02-20T17:30:000
 categories: [ Spring, Validation ]
 tags: [ back-end, spring, method argument not valid exception, controller advice ]
 ---
