@@ -99,7 +99,6 @@ public class AngrySecurityConfiguration {
 
 <br>
 
-
 - 실제로 로그인 인증이 완료된 후에 값이 저장되는지 확인
   - ```csrf```옵션을 활성화한다.
   - ```HttpServletRequest```를 이용해 쿠키값을 확인해본다.
@@ -107,45 +106,45 @@ public class AngrySecurityConfiguration {
 
 - CsrfTokenValidFilter
 
-
 ```java
+
 @Slf4j
 @Component
 public class CsrfTokenValidFilter implements Filter {
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
 
-        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+    HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 
-        Cookie[] cookies = ((HttpServletRequest) request).getCookies();
+    Cookie[] cookies = ((HttpServletRequest) request).getCookies();
 
-        Cookie _csrf = null;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("_csrf".equals(cookie.getName())) {
-                    _csrf = cookie;
-                }
-            }
+    Cookie _XSRF_TOKEN = null;
+    if (cookies != null) {
+      for (Cookie cookie : cookies) {
+        if ("XSRF-TOKEN".equals(cookie.getName())) {
+          _XSRF_TOKEN = cookie;
         }
-
-        if (_csrf != null) {
-            log.info("_csrf = {}", _csrf);
-            log.info("_csrf.getName() = {}", _csrf.getName());
-            log.info("_csrf.getValue() = {}", _csrf.getValue());
-        }
-
-        HttpSession session = httpServletRequest.getSession();
-        Enumeration<String> attributeNames = session.getAttributeNames();
-
-        while (attributeNames.hasMoreElements()) {
-            String name = attributeNames.nextElement();
-            Object attribute = session.getAttribute(name);
-            log.info("attribute = {}", attribute);
-        }
-
-        filterChain.doFilter(request, response);
+      }
     }
+
+    if (_XSRF_TOKEN != null) {
+      log.info("XSRF-TOKEN = {}", _XSRF_TOKEN);
+      log.info("XSRF-TOKEN.getName() = {}", _XSRF_TOKEN.getName());
+      log.info("XSRF-TOKEN.getValue() = {}", _XSRF_TOKEN.getValue());
+    }
+
+    HttpSession session = httpServletRequest.getSession();
+    Enumeration<String> attributeNames = session.getAttributeNames();
+
+    while (attributeNames.hasMoreElements()) {
+      String name = attributeNames.nextElement();
+      Object attribute = session.getAttribute(name);
+      log.info("attribute = {}", attribute);
+    }
+
+    filterChain.doFilter(request, response);
+  }
 
 }
 ```
@@ -164,6 +163,35 @@ public class CsrfTokenValidFilter implements Filter {
                 .httpBasic(withDefaults());
     ```
 
+![csrf_valid](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/2e15c3e8-bcfd-42c3-ad0a-3044f07c5fda)
 
-![csrf_token_valid](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/ba0ac616-b27c-4a37-806d-781662452a9d)
 
+<h2> CsrfToken 설명 </h2>
+
+```java
+
+public interface CsrfToken extends Serializable {
+
+  /**
+   * Gets the HTTP header that the CSRF is populated on the response and can be placed
+   * on requests instead of the parameter. Cannot be null.
+   * @return the HTTP header that the CSRF is populated on the response and can be
+   * placed on requests instead of the parameter
+   */
+  String getHeaderName();
+
+  /**
+   * Gets the HTTP parameter name that should contain the token. Cannot be null.
+   * @return the HTTP parameter name that should contain the token.
+   */
+  String getParameterName();
+
+  /**
+   * Gets the token value. Cannot be null.
+   * @return the token value
+   */
+  String getToken();
+
+}
+
+```
