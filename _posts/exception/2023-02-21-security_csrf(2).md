@@ -1,8 +1,8 @@
 ---
 title: Spring Security, Csrf 검증 필터
 description: Spring Security
-date: 2024-02-21T21:40:000
-categories: [ Spring Jpa, Security ]
+date: 2024-02-22T21:40:000
+categories: [ Exception, Security ]
 tags: [ back-end, spring, security, csrf ]
 ---
 

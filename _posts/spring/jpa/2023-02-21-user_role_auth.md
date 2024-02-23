@@ -2,7 +2,7 @@
 title: 유저, 역할, 권한 ERD 설계
 description: Spring data jpa, erd
 date: 2024-02-19T16:15:000
-categories: [ Spring Jpa, Entity ]
+categories: [ Spring, Jpa ]
 tags: [ back-end, spring, jpa, user role auth, erd ]
 ---
 
