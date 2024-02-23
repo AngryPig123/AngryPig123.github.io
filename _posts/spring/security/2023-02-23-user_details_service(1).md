@@ -1,7 +1,7 @@
 ---
 title: Spring Security, User Authentication
 description: Spring Security
-date: 2024-02-23T10:50:000
+date: 2024-02-23T13:00:000
 categories: [ Spring, Security ]
 tags: [ back-end, spring, security, user authentication ]
 ---
