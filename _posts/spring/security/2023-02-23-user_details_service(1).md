@@ -12,7 +12,7 @@ tags: [ back-end, spring, security, user authentication ]
 
 ![erd](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/8faa7798-bc02-406a-b2d9-0f86dff0f209)
 
-- CustomUserDetails
+<h2>CustomUserDetails</h2>
 
 - ```getAuthorities()``` : 접근한 사용자의 권한들을 가져오는 메소드.
 
@@ -67,8 +67,9 @@ public class CustomUserDetails implements UserDetails {
 
 <br>
 
-- JpaUserDetailsService
-  - ```SimpleGrantedAuthority``` : ```Spring security``` 가 기본 제공.
+<h2>JpaUserDetailsService</h2>
+
+- ```SimpleGrantedAuthority``` : ```Spring security``` 가 기본 제공.
 - 애플리케이션 사용자의 이름에 해당하는 사용자를 찾으면 위에서 만들었던 CustomUserDetails에 user인스턴스를 래핑해서 반환
   - ```UsernameNotFoundException``` : 사용자를 못찾으면 반환하는 에러.
 
@@ -94,8 +95,10 @@ public class JpaUserDetailsService implements UserDetailsService {
 
 <br>
 
-- AuthenticationProvider
-  - ```authenticate()``` 실제 인증이 진행하고 유저 토큰을 리턴
+
+<h2>AuthenticationProvider</h2>
+
+- ```authenticate()``` 실제 인증이 진행하고 유저 토큰을 리턴
 
 ```java
 
@@ -132,11 +135,13 @@ public class AuthenticationProviderService implements AuthenticationProvider {
 }
 ```
 
-<br>
-
 - ```JpaUserDetailsService```해당 서비스를 이미 ```@Bean```으로 등록하고 있기 때문에 <br>
   ```SecurityConfiguration```에 추가설정 불필요.
 
+<br>
+
+
+<h2>Exception</h2>
 
 - 이미 저장되어 있는 유저 정보로 로그인 시도 ⇒ 공포의 no_session 예외 발생
 
@@ -145,6 +150,5 @@ public class AuthenticationProviderService implements AuthenticationProvider {
 - 영속성 유지를 위해 ```AuthenticationProviderService```클래스의 ```authenticate``` 메소드에 ```@Transaction``` 설정
 
 ![success](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/3c161773-12b1-4db2-8e0b-3df1801481b5)
-
 
 역할, 권한에 따른 접근 제한은 나중에....
