@@ -6,10 +6,11 @@ categories: [ Spring, Security ]
 tags: [ back-end, spring, security, csrf ]
 ---
 
-- Csrf(cross site request forgery)
-  - A 사이트에 로그인, 사용자 권한 획득
-  - 사용자가 웹 어플레케이션에 로그인 했다고 가정하며 사용자는 공격자에게 속아서<br>
-    직업중인 같은 어플리케이션에서 작업을 실행하는 스크립트가 포함된 페이지가 열리면서 공격
+<h2>- Csrf(cross site request forgery)</h2>
+
+- A 사이트에 로그인, 사용자 권한 획득
+- 사용자가 웹 어플레케이션에 로그인 했다고 가정하며 사용자는 공격자에게 속아서<br>
+  직업중인 같은 어플리케이션에서 작업을 실행하는 스크립트가 포함된 페이지가 열리면서 공격
 
 
 - ```Spring Security```에서는 해당 공격을 막기 위한 옵션이 자동으로 설정되어있음.
@@ -19,8 +20,10 @@ tags: [ back-end, spring, security, csrf ]
 
 <br>
 
-- CsrfTokenLoggerFilter
-  - ```Spring Security``` 가 자동으로 생성해주는 csrf 토큰 확인.
+
+<h2>CsrfTokenLoggerFilter</h2>
+
+- ```Spring Security``` 가 자동으로 생성해주는 csrf 토큰 확인.
 
 ```java
 
@@ -44,8 +47,9 @@ public class CsrfTokenLoggerFilter implements Filter {
 
 <br>
 
-- ```CsrfTokenLoggerFilter``` 추가
-  - ```defaultSecurityFilterChain``` 해당 메소드안에 ```.addFilterAfter()```로 추가.
+<h2>CsrfTokenLoggerFilter</h2>
+
+- ```defaultSecurityFilterChain``` 해당 메소드안에 ```.addFilterAfter()```로 추가.
 
 ```java
 
@@ -92,7 +96,7 @@ public class AngrySecurityConfiguration {
 
 <br>
 
-- 로그 확인
+<h2>로그 확인</h2>
 
 ![csrf_token](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/20601f1e-a200-4669-a653-cf58aa81a1a0)
 
@@ -103,8 +107,7 @@ public class AngrySecurityConfiguration {
   - ```csrf```옵션을 활성화한다.
   - ```HttpServletRequest```를 이용해 쿠키값을 확인해본다.
 
-
-- CsrfTokenValidFilter
+<h2>CsrfTokenValidFilter</h2>
 
 ```java
 
