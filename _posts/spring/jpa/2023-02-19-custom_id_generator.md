@@ -2,7 +2,7 @@
 title: Custom Generator
 description: 스프링 레디스
 date: 2024-02-19T02:51:000
-categories: [ Spring Jpa, Entity ]
+categories: [ Spring, Jpa ]
 tags: [ back-end, spring, jpa, custom generator, id generator ]
 ---
 
