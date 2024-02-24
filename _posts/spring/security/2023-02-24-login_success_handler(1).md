@@ -119,3 +119,42 @@ public class MainController {
 ```
 
 ![success_handler](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/6496a917-f76f-495e-8e2c-0aabfdf914b5)
+
+<br>
+
+<h2> 테스트 </h2>
+
+```java
+
+@SpringBootTest
+@AutoConfigureMockMvc
+public class MainControllerTest {
+
+  @Autowired
+  private MockMvc mockMvc;
+
+  @Test
+  void main_greeting_test() throws Exception {
+
+    MvcResult mvcResult = mockMvc.perform(
+        get("/main")
+          .with(httpBasic("guest@gmail.com", "1q2w3e4r!"))
+      )
+      .andExpect(status().isOk())
+      .andReturn();
+
+    ModelAndView modelAndView = mvcResult.getModelAndView();
+    Assertions.assertNotNull(modelAndView);
+
+    String viewName = modelAndView.getViewName();
+    Assertions.assertEquals("/main/index", viewName);
+
+    Map<String, Object> model = modelAndView.getModel();
+    Assertions.assertNotNull(model.get("greeting"));
+
+  }
+
+}
+```
+
+![test_success](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/d6b50d18-ffbc-41c2-9537-fea1d6338cd1)
