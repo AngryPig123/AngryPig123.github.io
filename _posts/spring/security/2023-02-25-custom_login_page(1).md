@@ -1,5 +1,5 @@
 ---
-title: Spring Security, Password Encoder
+title: Spring Security, Custom Form Login
 description: Spring Security
 date: 2024-02-25T21:00:000
 categories: [ Spring, Security ]
