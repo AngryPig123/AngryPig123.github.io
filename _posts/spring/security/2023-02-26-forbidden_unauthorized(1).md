@@ -1,7 +1,7 @@
 ---
 title: Spring Security, 401 403
 description: Spring Security
-date: 2024-02-25T21:00:000
+date: 2024-02-26T19:40:000
 categories: [ Spring, Security ]
 tags: [ back-end, spring, security, 401 403 exception handler ]
 ---
