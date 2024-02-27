@@ -1,5 +1,5 @@
 ---
-title: Spring Security, Spring Security Otp
+title: Spring Security, Spring Security Otp(1)
 description: Spring Security
 date: 2024-02-27T16:40:000
 categories: [ Spring, Security ]
@@ -98,7 +98,7 @@ public interface OtpRepository extends JpaRepository<Otp, String> {
 public interface UserService {
   void addUser(User user);
 
-  void auth(User user);
+  String auth(User user);
 
   boolean check(Otp otpToValidate);
 }
@@ -125,14 +125,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void auth(User user) {
+  public String auth(User user) {
     User findUser = userRepository.findUserByUsername(user.getUsername()).orElseThrow(() -> badCredentials().get());
     log.info("findUser = {}", findUser.getUsername());
     log.info("findUser = {}", findUser.getPassword());
     if (passwordEncoder.matches(user.getPassword(), findUser.getPassword())) {
-      renewOtp(findUser);
+      return renewOtp(findUser);
     } else {
-      throw badCredentials().get();
+//            throw badCredentials().get();
+      return null;
     }
   }
 
@@ -154,7 +155,7 @@ public class UserServiceImpl implements UserService {
     return passwordEncoder.encode(user.getPassword());
   }
 
-  private void renewOtp(User findUser) {
+  private String renewOtp(User findUser) {
     String code = GenerateCodeUtil.generateCode();
     Optional<Otp> findOtp = otpRepository.findOtpByUsername(findUser.getUsername());
 
@@ -168,7 +169,7 @@ public class UserServiceImpl implements UserService {
         .build();
       otpRepository.save(otp);
     }
-
+    return code;
   }
 
   private static final class GenerateCodeUtil {
@@ -211,10 +212,11 @@ public class AuthController {
   }
 
   @PostMapping(path = "/user/auth")
-  public ResponseEntity<Void> auth(@RequestBody User user) {
-    userService.auth(user);
-    return new ResponseEntity<>(HttpStatus.OK);
-  }
+  public String auth(@RequestBody User user) {
+    String otpCode = userService.auth(user);
+    log.info("otp code = {}", otpCode);
+    return otpCode;
+  }   //  ToDO otp code 를 response 한다.
 
   @PostMapping(path = "/otp/check")
   public ResponseEntity<Void> check(@RequestBody Otp otp) {
@@ -225,6 +227,17 @@ public class AuthController {
       return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
+  }
+
+  @Getter
+  @Setter
+  @NoArgsConstructor
+  public static class RequestBodyContainer<T> {
+    private T requestBodyData;
+
+    public RequestBodyContainer(T requestBodyData) {
+      this.requestBodyData = requestBodyData;
+    }
   }
 
 }
@@ -295,8 +308,27 @@ server:
 - ```schema.sql```
 
 ```text
-delete FROM user;
-delete FROM otp;
+CREATE DATABASE IF NOT EXISTS `otp_auth`;   #
+
+CREATE TABLE IF NOT EXISTS `user`
+(
+    `password` varchar(255) DEFAULT NULL,
+    `username` varchar(255) NOT NULL,
+    PRIMARY KEY (`username`)
+);
+
+CREATE TABLE IF NOT EXISTS `otp`
+(
+    `code`     varchar(255) DEFAULT NULL,
+    `username` varchar(255) NOT NULL,
+    PRIMARY KEY (`username`)
+);
+
+DELETE
+FROM `otp_auth`.`user`;
+
+DELETE
+FROM `otp_auth`.`otp`;
 ```
 
 
