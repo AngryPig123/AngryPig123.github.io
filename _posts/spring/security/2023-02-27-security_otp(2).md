@@ -20,7 +20,7 @@ tags: [ back-end, spring, security, spring security otp, open feign ]
 
 - ```implements```로 ```org.springframework.cloud:spring-cloud-starter-openfeign``` 해당 의존성을 땡겨오면 안됨
   - 추가적으로 ```ext{}``` 부분과 ```dependencyManagement``` 부분을 같이 떙겨 와야함.
-  - ```openfeign```라이브러리 자체가 ```spring cloud``` 기반 기술이라 해당 라이브러리만 땡겨오기 위한 설정으로 추정
+  - ```openfeign```라이브러리 자체가 ```spring cloud``` 에 붙어있는 기술이라 해당 라이브러리만 땡겨오기 위한 설정으로 추정
 
 ```text
 plugins {
@@ -166,13 +166,14 @@ public class OtpFeignClientServiceImpl implements OtpFeignClientService {
 
 <h2> EnableFeignClients </h2>
 
-- ```service implements``` 부분을 보면 어디에서도 ```@Bean```등록을 해주는게 없음 해당 문제를 해결하기 위한 설정 필요
+- ```service implements``` 부분을 보면 어디에서도 ```gateway```기능을 ```@Bean```등록을 해주는게 <br>
+  없음 해당 문제를 해결하기 위한 설정 필요
   - 진입 ```entry point```에 ```@EnableFeignClients``` 설정을 해주면 자동으로 빈주입을 해준다.
 
 ```java
 
 @EnableFeignClients
-@SpringBootApplication
+@SpringBootApplication  //  요녀석이 붙어있는 클래스를 entry point 라고 한다.
 public class SpringSecurityBusinessApplication {
 
   public static void main(String[] args) {
