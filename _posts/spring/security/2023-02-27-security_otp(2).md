@@ -1,7 +1,7 @@
 ---
 title: Spring Security, Spring Security Otp(2)
 description: Spring Security
-date: 2024-02-27T16:40:000
+date: 2024-02-27T23:00:000
 categories: [ Spring, Security ]
 tags: [ back-end, spring, security, spring security otp, open feign ]
 ---
