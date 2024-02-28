@@ -1,9 +1,9 @@
 ---
-title: Spring Security, Spring Security Otp(2)
+title: Spring Security, Spring Cloud Openfeign(1)
 description: Spring Security
 date: 2024-02-27T23:00:000
-categories: [ Spring, Security ]
-tags: [ back-end, spring, security, spring security otp, open feign ]
+categories: [ Spring, Openfeign ]
+tags: [ back-end, spring, security,  open feign ]
 ---
 
 [otp_part_1](https://angrypig123.github.io/posts/security_otp(1)/){:target="\_blank"}
