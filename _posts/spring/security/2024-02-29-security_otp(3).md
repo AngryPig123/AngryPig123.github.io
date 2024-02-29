@@ -6,7 +6,7 @@ categories: [ Spring, Security ]
 tags: [ back-end, spring, security, spring security otp ]
 ---
 
-[otp_part_1](https://angrypig123.github.io/posts/security_otp(2)/){:target="\_blank"}
+[otp_part_2](https://angrypig123.github.io/posts/security_otp(2)/){:target="\_blank"}
 
 - ```인증필터```, ```JWT 필터 구현```
 
