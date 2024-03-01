@@ -1,9 +1,9 @@
 ---
-title: Spring Security, Spring Cloud Openfeign(2)
-description: Spring Security
+title: Spring, Openfeign(2)
+description: Spring Openfeign
 date: 2024-03-01T16:40:000
 categories: [ Spring, Openfeign ]
-tags: [ back-end, spring, security,  open feign ]
+tags: [ back-end, spring, open feign ]
 ---
 
 - ```openfeign``` 테스트를 하기 위한 ```response-server```과 ```request-server``` 생성
