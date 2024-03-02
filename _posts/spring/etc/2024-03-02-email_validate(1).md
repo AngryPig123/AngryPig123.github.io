@@ -18,9 +18,10 @@ tags: [ back-end, spring, jpa, entity mapping ]
 
 <h2>프로젝트 셋팅 및 테이블과 Entity 구성</h2>
 
+
 - 프로젝트 환경
   - ```java17```, ```spring boot 3.2.3```
-  -
+
 
 - ```build.gradle``` : 주요 설정
   - ```DAO``` : ```spring-boot-starter-data-jpa``` DB 접근 기술
@@ -29,6 +30,7 @@ tags: [ back-end, spring, jpa, entity mapping ]
   - ```tamplate-engine``` : ```spring-boot-starter-thymeleaf``` 템플릿 설정
   - ```gateway``` : ```spring-cloud-starter-openfeign``` 외부 서버와 통신을 위한 설정
   - ```database``` : ```com.mysql:mysql-connector-j```  ```mysql``` 사용
+
 
 ```text
 plugins {
@@ -133,7 +135,6 @@ public abstract class BaseEntity {
 ```
 
 <br>
-
 
 <h2>User</h2>
 
@@ -270,6 +271,7 @@ public class Roles extends BaseEntity {
 
 <br>
 
+
 <h2>RoleAuthority</h2>
 
 - 역할과 권한을 중간에서 연결해주는 중간 테이블, 외래키를 복합키로 갖게되는 구조가 된다.
@@ -300,7 +302,8 @@ public class RoleAuthority extends BaseEntity {
 }
 ```
 
-- ```@EmbeddedId```
+- ```EmbeddedId```
+
 
 ```java
 
