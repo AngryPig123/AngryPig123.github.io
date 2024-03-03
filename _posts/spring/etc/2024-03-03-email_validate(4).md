@@ -91,43 +91,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 <head>
   <meta charset="UTF-8"/>
   <title>Email Template</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      color: #333333;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #666666;
-    }
-
-    .email-title {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .email-address {
-      font-size: 18px;
-      font-weight: bold;
-      color: #007bff;
-    }
-  </style>
 </head>
 <body>
 <div class="container">
