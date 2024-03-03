@@ -1,7 +1,7 @@
 ---
 title: Spring, 이메일 인증 회원가입(2).
 description: 기초 데이터 설정 및 이메일 서비스 연동
-date: 2024-03-02T19:1:000
+date: 2024-03-02T19:10:000
 categories: [ Spring ]
 tags: [ back-end, spring, email sender ]
 ---
