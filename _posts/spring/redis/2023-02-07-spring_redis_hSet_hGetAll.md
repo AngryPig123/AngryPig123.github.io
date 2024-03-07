@@ -2,7 +2,7 @@
 title: Spring Redis
 description: 스프링 레디스
 date: 2024-02-07
-categories: [ Spring Redis, Reflection ]
+categories: [ Spring, Redis ]
 tags: [ back-end, spring, redis, docker redis, reflection, hSet, hGetAll ]
 ---
 
