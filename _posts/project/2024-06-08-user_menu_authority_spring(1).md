@@ -2,8 +2,8 @@
 title: 관리자 권한, 메뉴 관리 (2)
 description: 프로젝트 구성
 date: 2024-06-08T13:00:000
-categories: [Database]
-tags: [oracle, relationship]
+categories: [Spring]
+tags: [flyway, h2 database, mybatis]
 ---
 
 
