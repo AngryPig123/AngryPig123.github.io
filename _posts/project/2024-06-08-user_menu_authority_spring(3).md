@@ -1,7 +1,7 @@
 ---
 title: 관리자 권한, 메뉴 관리 (4)
 description: CustomAuthenticationProvider
-date: 2024-06-08T16:00:000
+date: 2024-06-08T20:00:000
 categories: [ Spring ]
 tags: [ spring security, spring security authentication provider ]
 ---
