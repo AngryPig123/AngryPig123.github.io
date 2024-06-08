@@ -2,8 +2,8 @@
 title: 관리자 권한, 메뉴 관리 (3)
 description: spring security 설정, UserDetail 설정
 date: 2024-06-08T16:00:000
-categories: [ Database ]
-tags: [ oracle, relationship ]
+categories: [ Spring ]
+tags: [ spring security, spring security user details, mybatis ]
 ---
 
 

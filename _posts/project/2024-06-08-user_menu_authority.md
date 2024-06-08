@@ -120,7 +120,7 @@ tags: [oracle, relationship]
 
 <br>
 
-- ERD 다이어그램 입니다.
+- ERD 입니다.
 
 ![erd](https://github.com/AngryPig123/AngryPig123.github.io/assets/86225268/f11ad2ca-857b-4f1a-819e-21e42b670cca)
 
