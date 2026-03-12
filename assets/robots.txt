@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c3e355552154ba39e6413a8d6f3e042c4e8a5e49104bc1d15fb6829d1d77e582
-size 146
+---
+permalink: /robots.txt
+# The robots rules
+---
+
+User-agent: *
+
+Disallow: /norobots/
+
+Sitemap: {{ '/my-sitemap.xml' | absolute_url }}

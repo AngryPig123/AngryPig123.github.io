@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:873d258f88f0e492b084ac034bdde2f6038de1ea5e5e20ee4f9d45d38799e4e9
-size 305
+---
+layout: compress
+---
+
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square150x150logo src="{{ '/assets/img/favicons/mstile-150x150.png' | relative_url }}" />
+      <TileColor>#da532c</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>

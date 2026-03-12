@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:53b4224d2ef44ae7eb4c1f16a8c8144a095fc1d4f0112f1eee9ac320c7707b05
-size 617
+---
+layout: compress
+swcache: true
+---
+
+[
+  {% for post in site.posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "categories": {{ post.categories | join: ', ' | jsonify }},
+    "tags": {{ post.tags | join: ', ' | jsonify }},
+    "date": "{{ post.date }}",
+    {% include no-linenos.html content=post.content %}
+    {% assign _content = content | strip_html | strip_newlines %}
+    "snippet": {{ _content | truncate: 200 | jsonify }},
+    "content": {{ _content | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
