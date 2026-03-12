@@ -71,4 +71,4 @@ tags: [DDD, Domain Driven Design, Aggregate, AggregateRoot, Hexagonal Architectu
 
 이것이 `Aggregate`다.
 
-![참고이미지](https://drive.google.com/uc?export=view&id=1y_kjM4bHA8lRzAPJ0NFMwtr01jKSEDMJ)
+![이미지](https://raw.githubusercontent.com/AngryPig123/blog_img/main/order-service-domain-logic.png)
