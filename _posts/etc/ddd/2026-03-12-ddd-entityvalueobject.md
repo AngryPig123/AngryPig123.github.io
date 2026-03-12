@@ -313,7 +313,7 @@ public class StreetAddress {
 
 - `Aggregate`란 무엇인가
 - 왜 필요한가
-- `Root Aggregate`가 필요한 이유
+- `AggregateRoot`가 필요한 이유
 - 트랜잭션 경계와 관계
 
 를 정리해보려고 한다.
