@@ -28,7 +28,7 @@ Domain -> Port -> Adapter -> LLM
 
 구조로 연결하도록 하기 위함이다.
 
-이번 글에서는 그 첫번째로 `Ollima`의 `Qwen2.5:7b` 모델을 `Adapter`로 연결해 본다.
+이번 글에서는 그 첫번째로 `Ollama`를 통해서 `Qwen2.5:7b` 모델을 `Adapter`로 연결해 본다.
 
 ---
 
@@ -86,7 +86,7 @@ class OllamaLLMAdapter(LLMPort):
 
 해당 `Adapter`는 
 
-- `Ollima API 호출`
+- `Ollama API 호출`
 - 모델 실행
 - 결과반환
 
