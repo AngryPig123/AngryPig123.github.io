@@ -99,6 +99,7 @@ CREATE TABLE IF NOT EXISTS document_embedding (
 ```
 
 - 설정 순서, 차례대로 실행하여 설치를 진행한다.
+
 ```docker
 docker compose up -d --build
 docker exec -it postgres-pgvector psql -U {USER_ID} -d {DATABASE}
