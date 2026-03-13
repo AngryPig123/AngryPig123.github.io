@@ -275,18 +275,20 @@ public class OrderCreateCommandHandler {
 
 <h2> 5. 차이점 정리 </h2>
 
-| 구분            | Domain Service | Application Service |
-| ------------- | -------------- | ------------------- |
-| 역할            | 도메인 규칙         | 유스케이스 실행            |
-| 위치            | Domain Layer   | Application Layer   |
-| 로직            | 비즈니스 규칙        | 흐름 제어               |
-| Repository 호출 | 가능             | 가능                  |
-| Entity 호출     | 가능             | 가능                  |
-| 트랜잭션          | 없음             | 있음                  |
+| 구분            | Domain Service      | Application Service |
+| ------------- | ------------------- | ------------------- |
+| 역할            | 도메인 규칙              | 유스케이스 실행            |
+| 위치            | Domain Layer        | Application Layer   |
+| 로직            | 비즈니스 규칙             | 흐름 제어               |
+| Repository 사용 | 필요한 경우 가능 (도메인 추상화) | 일반적으로 사용            |
+| Entity 사용     | 가능                  | 가능                  |
+| 트랜잭션          | 직접 관리하지 않음          | 보통 트랜잭션 경계 담당       |
 
-기준,
 
 ```
+Application Service는 보통 트랜잭션 경계를 시작하는 위치이며,
+Domain Service는 트랜잭션 내부에서 실행되는 도메인 로직을 담당한다.
+
 도메인 규칙 -> Domain Service
 처리 흐름 -> Application Service
 ```
