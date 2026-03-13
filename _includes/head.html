@@ -14,8 +14,8 @@
     <meta name="minute-prompt" content="{{ site.data.locales[lang].post.timeago.minute }}">
     <meta name="justnow-prompt" content="{{ site.data.locales[lang].post.timeago.just_now }}">
 
-    {% if page.last_modified_at %}
-      <meta name="last-modified-at" content="{{ page.last_modified_at | date_to_xmlschema }}">
+    {% if page.updated %}
+      <meta name="updated" content="{{ page.last_modified_at | escape }}">
     {% endif %}
 
     {% if site.google_analytics.pv.proxy_endpoint %}

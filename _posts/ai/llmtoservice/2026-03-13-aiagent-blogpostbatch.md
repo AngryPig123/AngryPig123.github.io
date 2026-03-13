@@ -2,7 +2,7 @@
 title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기 작성중...
 description: 블로그 QA Agent가 사용할 데이터를 만들기 위해 Spring Batch 프로젝트를 생성하고 글 수집 구조를 설계한다.
 date: 2026-03-13T16:00:00+09:00
-last_modified_at: 2026-03-13 17:57:00 +0900
+updated: 2026-03-13T17:57:00+09:00
 categories: [AI, AI Agent]
 tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG]
 ---
