@@ -7,6 +7,8 @@ categories: [AI, AI Agent]
 tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG]
 ---
 
+<meta name="last-modified-at" content="{{ page.last_modified_at | date_to_xmlschema }}">
+
 <h2> 1. 구성하게 된 이유 </h2>
 
 `AI Agent`를 구현하면서 `Tool` 목록을 정리하다 보니,  
