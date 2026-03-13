@@ -1,7 +1,8 @@
 ---
-title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기
+title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기 작성중...
 description: 블로그 QA Agent가 사용할 데이터를 만들기 위해 Spring Batch 프로젝트를 생성하고 글 수집 구조를 설계한다.
 date: 2026-03-13T16:00:00+09:00
+last_modified_at: 2026-03-13 17:57:00 +0900
 categories: [AI, AI Agent]
 tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG]
 ---
@@ -35,4 +36,68 @@ tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG]
 
 <h2> 2. 데이터 베이스 선택 </h2>
 
-![데이터 베이스 선택 및 설치]()
+[데이터 베이스 선택 및 설치](https://angrypig123.github.io/posts/dockerpostgresqlpgvector/)
+
+<h3> 3. Spring batch 프로젝트 준비 </h3>
+
+- 의존성 정보
+
+```
+JDK : Amazon Correto 17.0.18
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+
+    // Source: https://mvnrepository.com/artifact/org.jsoup/jsoup
+    implementation("org.jsoup:jsoup:1.21.2")
+
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.19.4'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.19.4'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.4'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.4'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.4'
+    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.19.4'
+
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+    testImplementation 'org.springframework.batch:spring-batch-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+```
+
+- 패키지 구조
+
+```
+...
+```
+
+
+<h2>4. 수집 전략</h2>
+
+수집 전략은 깃블로그 사이트(jekyll, chirpy 사용)에서 자동으로 생성되는 `/my-sitemap.xml` 파일에서 게시글 목록과 기본 정보를 먼저 수집하는 것이다.
+이후 각 게시글 페이지에 접근하여 `Jsoup`으로 본문과 메타데이터를 파싱하고, 파싱한 원문은 `DB`에 저장한다.
+추가로 원문을 임베딩하여 생성한 벡터 데이터는 `Vector DB`에 저장해, 이후 검색이나 `RAG`에 활용할 수 있도록 한다.
+
+고려해야 할 사항. 이미 수집된 블로그 글은 수집되지 않아야함.
+수정된 글은 다시 임배딩을 해야함.
+수정된 글은 원문 테이블에 다시 update를 해야함.
+
+`BlogPost` 엔티티 구조
+
+```java
+public class BlogPost extends BaseEntity<BlogPostId> {
+    private String title;
+    private String description;
+    private String sourcePath;
+    private String content;
+    private String tagsJson;
+    private String contentHash;
+    private final Instant createdAt;
+    private final Instant updatedAt;
+}
+```
+
