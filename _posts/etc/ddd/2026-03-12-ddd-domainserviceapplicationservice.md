@@ -17,7 +17,7 @@ tags: [DDD, Domain Driven Design, Domain Service, Application Service, Hexagonal
 - `Application Service`에 둘것인지
 
 를 구분해야 한다고 말한다.
-
+1
 이번 글에서는
 
 - `Domain Service`란 무엇인가
