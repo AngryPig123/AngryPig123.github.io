@@ -206,9 +206,9 @@ Hexagonal Architecture
 
 <h2> 5. 정리 </h2>
 
-`DDD`는 도메인을 어떻게 설계할지 알려준다. `Hexagonal Architeture`는 도메인을 중심으로 구조를 만드는 방법을 알려준다.
+`DDD`는 도메인을 어떻게 설계할지 알려준다. `Hexagonal Architecture`는 도메인을 중심으로 구조를 만드는 방법을 알려준다.
 
-`DDD`만 사용하면 구조가 흔들릴 수 있고 `Hexagonal Architeture`만 사용한다면 도메인이 약해질 수 있다. 그래서 실무에서는 둘을 같이 사용하는 경우가 많다. 
+`DDD`만 사용하면 구조가 흔들릴 수 있고 `Hexagonal Architecture`만 사용한다면 도메인이 약해질 수 있다. 그래서 실무에서는 둘을 같이 사용하는 경우가 많다. 
 
 결과적으로 좋은 설계의 기준은
 

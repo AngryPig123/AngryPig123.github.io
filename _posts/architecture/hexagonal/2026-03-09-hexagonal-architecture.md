@@ -21,7 +21,7 @@ DDD의 개념을 알고 있으면 내용이 훨씬 쉽게 이해된다.
   - [entity vs value object](https://angrypig123.github.io/posts/ddd-entityvalueobject/)
   - [aggregate](https://angrypig123.github.io/posts/ddd-aggregate/)
   - [domain service vs application service](https://angrypig123.github.io/posts/ddd-domainserviceapplicationservice/)
-  - [hexagonal architeture](https://angrypig123.github.io/posts/ddd-hexagonalarchitecture/)
+  - [hexagonal architecture](https://angrypig123.github.io/posts/ddd-hexagonalarchitecture/)
 
 2024년쯤 회사 스터디를 통해 `DDD`와 `Hexagonal Architecture`를 잠깐 공부한 적이 있었다.  
 하지만 당시에는 개념을 깊게 이해하지 못한 채 넘어가게 되어 아쉬움이 남아 있었다.
