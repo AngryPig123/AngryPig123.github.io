@@ -1,7 +1,7 @@
 ---
 title: Ollama LLM 연결하기 — Hexagonal Architecture로 LLM Adapter 구현
 description: Hexagonal Architecture 구조를 유지하면서 Ollama LLM을 Port / Adapter 구조로 연결한다.
-date: 2026-03-14T12:00:00+09:00
+date: 2026-03-13T13:30:00+09:00
 categories: [AI, AI Agent]
 tags: [AI, LLM, AI Agent, Hexagonal Architecture, Ollama, Adapter]
 ---
