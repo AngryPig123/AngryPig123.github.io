@@ -2,6 +2,7 @@
 title: DDD와 Hexagonal Architecture는 왜 같이 사용될까?
 description: DDD와 Hexagonal Architecture가 함께 등장하는 이유와 역할 관계 정리
 date: 2026-03-13T09:30:00+09:00
+updated: 2026-03-13T09:30:00+09:00
 categories: [Architecture, DDD]
 tags: [DDD, Hexagonal Architecture, Ports and Adapters, Clean Architecture, 설계, 아키텍처]
 ---

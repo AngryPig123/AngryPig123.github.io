@@ -2,6 +2,7 @@
 title: DDD - Entity와 Value Object의 차이
 description: Bounded Context 내부에서 모델을 구성하는 Entity와 Value Object의 개념과 차이 정리
 date: 2026-03-12T13:30:00+09:00
+updated: 2026-03-12T13:30:00+09:00
 categories: [Architecture, DDD]
 tags: [DDD, Domain Driven Design, Entity, ValueObject, Hexagonal Architecture, 설계, 아키텍처]
 ---

@@ -2,6 +2,7 @@
 title: DDD - Domain Service와 Application Service의 차이
 description: 비즈니스 로직을 어디에 두어야 하는지, Domain Service와 Application Service의 역할 정리
 date: 2026-03-12T16:40:00+09:00
+updated: 2026-03-12T16:40:00+09:00
 categories: [Architecture, DDD]
 tags: [DDD, Domain Driven Design, Domain Service, Application Service, Hexagonal Architecture, 설계, 아키텍처]
 ---

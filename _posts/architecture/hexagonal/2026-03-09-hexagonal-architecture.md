@@ -2,6 +2,7 @@
 title: Hexagonal Architecture란?
 description: 헥사고날 아키텍처의 개념, 목적, 구성 요소와 레이어드 아키텍처와의 차이를 정리한다.
 date: 2026-03-09T10:00:00+09:00
+updated: 2026-03-09T10:00:00+09:00
 categories: [Architecture, Hexagonal Architecture]
 tags: [Architecture, Hexagonal Architecture, Ports and Adapters, DDD]
 ---

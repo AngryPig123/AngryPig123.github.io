@@ -2,6 +2,7 @@
 title: DDD란 무엇인가? - Ubiquitous Language 이해하기
 description: Hexagonal Architecture를 학습하면서 함께 등장하는 DDD의 개념과 Ubiquitous Language의 필요성 정리
 date: 2026-03-12T09:30:00+09:00
+updated: 2026-03-12T09:30:00+09:00
 categories: [Architecture, DDD]
 tags: [DDD, Domain Driven Design, Hexagonal Architecture, Ubiquitous Language, 설계, 아키텍처]
 ---

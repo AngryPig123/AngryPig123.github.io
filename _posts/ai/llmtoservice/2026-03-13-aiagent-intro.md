@@ -2,6 +2,7 @@
 title: AI Agent를 직접 만들어보려고 한 이유와 프로젝트 설정
 description: LLM, Tool Calling, RAG, Agent, Workflow, State, Memory 구조를 이해하기 위해 블로그 QA Agent를 직접 구현해보려고 한다.
 date: 2026-03-13T12:00:00+09:00
+updated: 2026-03-13T12:00:00+09:00
 categories: [AI, AI Agent]
 tags: [AI, LLM, AI Agent, RAG, Tool Calling, Workflow]
 ---

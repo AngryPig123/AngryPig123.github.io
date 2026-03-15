@@ -2,6 +2,7 @@
 title: DDD - Aggregate란 무엇인가?
 description: Entity와 Value Object를 묶어 일관성을 유지하는 단위인 Aggregate 개념 정리
 date: 2026-03-12T15:30:00+09:00
+updated: 2026-03-12T15:30:00+09:00
 categories: [Architecture, DDD]
 tags: [DDD, Domain Driven Design, Aggregate, AggregateRoot, Hexagonal Architecture, 설계, 아키텍처]
 ---

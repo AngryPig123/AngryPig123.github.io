@@ -2,6 +2,7 @@
 title: DDD - Bounded Context란 무엇인가?
 description: Ubiquitous Language 다음 개념인 Bounded Context의 의미와 왜 필요한지 정리
 date: 2026-03-12T11:30:00+09:00
+updated: 2026-03-12T11:30:00+09:00
 categories: [Architecture, DDD]
 tags: [DDD, Domain Driven Design, Bounded Context, Hexagonal Architecture, 설계, 아키텍처]
 ---

@@ -2,6 +2,7 @@
 title: PostgreSQL + pgvector 환경 구성 — AI Agent를 위한 Vector DB 준비
 description: AI Agent에서 사용할 임베딩 저장을 위해 PostgreSQL과 pgvector를 Docker로 구성한다.
 date: 2026-03-13T15:40:00+09:00
+updated: 2026-03-13T15:40:00+09:00
 categories: [AI, AI Agent]
 tags: [AI, AI Agent, PostgreSQL, pgvector, VectorDB, Docker]
 ---
