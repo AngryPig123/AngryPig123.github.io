@@ -88,16 +88,25 @@ dependencies {
 
 `BlogPost` 엔티티 구조
 
-```java
-public class BlogPost extends BaseEntity<BlogPostId> {
-    private String title;
-    private String description;
-    private String sourcePath;
-    private String content;
-    private String tagsJson;
-    private String contentHash;
-    private final Instant createdAt;
-    private final Instant updatedAt;
-}
-```
 
+
+- 고려해야 했던것
+  - 블로그글이 updated 되었을 때?
+    - jekyll chirpy 프레임 워크 공통 설정에 front matter에 커스텀 데이터를 meta 에 포함시킨다.
+  - 블로그 글 수집은 어떻게?
+    - jekyll chirpy 에서 자동으로 생성되는 my-sitemap.xml 링크에서 블로그 url 을 리스트업.
+    - 리스트업한 url 을 배치 프로그램 안에서 아래의 요소 추출후 원문 데이터 RDB 저장
+      - title
+      - description
+      - date
+      - updated
+      - categories
+      - tags
+  - chunk는 어떻게?
+    - jekyll chirpy 에서 `##`으로 표현된 행은 html로 변환될때 h2 태그로 변환된다
+    - H2 태그 기준으로 1차로 나누고 너무 긴 내용들은 휴리스틱으로 잘라서 구분한다.
+  - chunk 데이터를 ollama 에 임베딩 api를 호출해서 벡터화된 데이터를 가져온다.
+  - 백터화된 데이터를 가지고 JpaEntity를 구성해서 vector 테이블에 저장한다.(pgvector를 사용한다.)
+
+- 나중에 더 생각해야될것
+  - 코드 블록은 항상 길이가 길기 때문에 휴리스틱에 의해 마구잡이로 깨져서 인베딩된다. 어떻게 할지 고민 필요.(나중에)
