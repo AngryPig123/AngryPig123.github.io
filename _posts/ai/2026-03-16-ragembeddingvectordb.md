@@ -1,8 +1,8 @@
 ---
 title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기 작성중...
 description: 블로그 QA Agent가 사용할 데이터를 만들기 위해 글을 수집하고, Chunk 분할과 Embedding을 거쳐 Vector DB에 저장하는 Ingestion 구조를 설계한다.
-date: 2026-03-13T16:11:30+09:00
-date: 2026-03-13T16:11:30+09:00
+date: 2026-03-16T16:11:30+09:00
+date: 2026-03-16T16:11:30+09:00
 categories: [AI, Embedding]
 tags: [AI, AI Agent, RAG, Embedding, VectorDB]
 ---
