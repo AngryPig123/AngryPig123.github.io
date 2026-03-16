@@ -1,10 +1,10 @@
 ---
-title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기 작성중...
+title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기 (1)
 description: 블로그 QA Agent가 사용할 데이터를 만들기 위해 Spring Batch 프로젝트를 생성하고 글 수집 구조를 설계한다.
 date: 2026-03-13T16:00:00+09:00
-updated: 2026-03-13T17:57:00+09:00
+updated: 2026-03-16T22:00:00+09:00
 categories: [AI, AI Agent]
-tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG]
+tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG, Embedding, Chunk]
 ---
 
 <h2> 1. 구성하게 된 이유 </h2>
@@ -34,79 +34,180 @@ tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG]
 이 과정에서 필요한 LLM 및 임베딩 작업은 `Ollama API`를 통해 처리할 예정이므로,  
 별도의 전용 라이브러리에 강하게 의존하지 않고도 현재 구조에서 충분히 구현 가능하다고 판단했다.
 
+
 <h2> 2. 데이터 베이스 선택 </h2>
+
 
 [데이터 베이스 선택 및 설치](https://angrypig123.github.io/posts/dockerpostgresqlpgvector/)
 
-<h3> 3. Spring batch 프로젝트 준비 </h3>
+
+<h2> 3. 블로그 데이터 수집 및 임베딩 전략 </h2>
+
+데이터 수집은 `Jekyll + Chirpy` 기반 깃블로그에서 자동 생성되는 `/my-sitemap.xml`을 시작점으로 한다.
+먼저 사이트맵에서 게시글 목록과 기본 정보를 수집한 뒤, 각 게시글 페이지에 직접 접근하여 `Jsoup`으로 본문과 메타데이터를 파싱한다.
+파싱한 원문 데이터는 `RDB`에 저장하고, 이후 원문을 청크 단위로 분할한 뒤 임베딩하여 생성한 벡터 데이터는 `Vector DB`에 저장한다.
+이렇게 저장된 데이터는 이후 검색 기능이나 `RAG` 파이프라인에서 활용할 수 있다.
+
+- 수집 전략을 설계할 때는 다음 사항을 함께 고려해야 한다.
+  - 이미 수집된 게시글은 중복 수집되지 않아야 한다.
+  - 수정된 게시글은 원문 데이터를 다시 갱신해야 한다.
+  - 수정된 게시글은 변경된 내용을 기준으로 다시 청크를 나누고, 재임베딩해야 한다.
+
+- 고려한 사항
+  - 게시글 수정 여부는 어떻게 판단할 것인가?
+  - `Jekyll Chirpy` 프레임워크의 공통 설정을 활용해, `front matter`의 커스텀 데이터를 `meta` 정보에 포함시킨다.
+  - 이를 통해 게시글의 `updated` 값을 수집하고, 기존 데이터와 비교하여 재수집 및 재임베딩 여부를 판단한다.
+  - 블로그 글은 어떻게 수집할 것인가?
+  - `Jekyll Chirpy`에서 자동 생성되는 `/my-sitemap.xml`에서 게시글 `URL` 목록을 추출한다.
+  - 추출한 `URL`에 순차적으로 접근하여, 배치 프로그램에서 아래 항목을 파싱한 뒤 원문 데이터 `RDB`에 저장한다.
+    - `title`
+    - `description`
+    - `date`
+    - `updated`
+    - `categories`
+    - `tags`
+  - 청크 분할은 어떻게 할 것인가?
+  - `Jekyll Chirpy`에서는 `Markdown`의 `##` 구문이 `HTML` 변환 시 `h2` 태그로 변환된다.
+  - 이를 기준으로 먼저 1차 분할을 수행하고, 각 구간의 길이가 지나치게 길 경우에는 휴리스틱 기반으로 추가 분할한다.
+  - 임베딩 데이터는 어떻게 생성할 것인가?
+  - 분할된 청크 데이터를 `Ollama Embedding API`에 전달하여 벡터화된 임베딩 값을 생성한다.
+  - 벡터 데이터는 어떻게 저장할 것인가?
+  - 생성된 벡터 데이터를 기반으로 `JPA Entity`를 구성하고, `pgvector`를 사용하는 벡터 테이블에 저장한다.
+
+
+- 이후 추가로 고민할 사항
+  - 코드 블록 처리
+  - 코드 블록은 일반적으로 길이가 길고 구조가 뚜렷하기 때문에, 현재의 휴리스틱 기반 분할 방식에서는 문맥이 부자연스럽게 끊길 가능성이 크다.
+  - 따라서 코드 블록은 일반 본문과 다르게 취급할 필요가 있으며, 분할 전략을 별도로 설계할지 추후 검토가 필요하다.
+
+
+<h3> 4. Spring batch 프로젝트 준비 </h3>
+
 
 - 의존성 정보
 
 ```
+
 JDK : Amazon Correto 17.0.18
+SpringBoot : 3.5.11
+Postgresql & pgvector : 16
 
 dependencies {
+
+    //  spring boot
     implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // Source: https://mvnrepository.com/artifact/org.jsoup/jsoup
-    implementation("org.jsoup:jsoup:1.21.2")
+    //  util
+    implementation 'org.jsoup:jsoup:1.21.2'
 
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.19.4'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.19.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.19.4'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.4'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.4'
-    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.19.4'
-
-    compileOnly 'org.projectlombok:lombok'
+    //  db
     runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.hibernate.orm:hibernate-vector:6.6.4.Final'
+
+    //  lombok
+    compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    //  test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
     testImplementation 'org.springframework.batch:spring-batch-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 ```
 
-- 패키지 구조
+
+<h2> 5. 프로젝트 구조 </h2>
+
+설계 및 구조 : `DDD + Hexagonal Architecture`
+
 
 ```
-...
+├── src
+│   ├── main
+│   │   ├── generated
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── ai
+│   │   │           └── agent
+│   │   │               └── batch
+│   │   │                   ├── AiAgentBatchApplication.java
+│   │   │                   ├── application
+│   │   │                   │   ├── dto
+│   │   │                   │   │   ├── BlogChunk.java
+│   │   │                   │   │   ├── BlogPostSnapshot.java
+│   │   │                   │   │   ├── EmbeddedChunk.java
+│   │   │                   │   │   ├── H2Section.java
+│   │   │                   │   │   └── VectorBlogPostSnapshot.java
+│   │   │                   │   ├── mapper
+│   │   │                   │   │   └── BlogPostApplicationMapper.java
+│   │   │                   │   ├── port
+│   │   │                   │   │   └── out
+│   │   │                   │   │       ├── BlogPostChunker.java
+│   │   │                   │   │       ├── BlogPostParser.java
+│   │   │                   │   │       ├── BlogPostRepository.java
+│   │   │                   │   │       ├── BlogSourceClient.java
+│   │   │                   │   │       ├── EmbeddingPort.java
+│   │   │                   │   │       └── VectorDBBlogPostRepository.java
+│   │   │                   │   ├── service
+│   │   │                   │   │   ├── BlogCatalogSyncService.java
+│   │   │                   │   │   └── BlogEmbeddingSyncService.java
+│   │   │                   │   └── usecase
+│   │   │                   │       ├── SyncBlogCatalogUseCase.java
+│   │   │                   │       └── SyncBlogEmbeddingUseCase.java
+│   │   │                   ├── common
+│   │   │                   │   └── domain
+│   │   │                   │       └── model
+│   │   │                   │           ├── AggregateRoot.java
+│   │   │                   │           ├── BaseEntity.java
+│   │   │                   │           ├── BaseId.java
+│   │   │                   │           └── DomainException.java
+│   │   │                   ├── domain
+│   │   │                   │   ├── exception
+│   │   │                   │   │   └── BlogPostBatchDomainException.java
+│   │   │                   │   └── model
+│   │   │                   │       ├── BlogPost.java
+│   │   │                   │       ├── BlogPostChunk.java
+│   │   │                   │       ├── BlogPostChunkId.java
+│   │   │                   │       └── BlogPostId.java
+│   │   │                   ├── infrastructure
+│   │   │                   │   ├── chunk
+│   │   │                   │   │   └── JekyllBlogPostChunker.java
+│   │   │                   │   ├── client
+│   │   │                   │   │   └── JekyllSitemapClient.java
+│   │   │                   │   ├── config
+│   │   │                   │   │   ├── AsyncConfig.java
+│   │   │                   │   │   └── CommonConfig.java
+│   │   │                   │   ├── embed
+│   │   │                   │   │   └── NomicEmbeddingAdapter.java
+│   │   │                   │   ├── parser
+│   │   │                   │   │   └── JsoupBlogPostParser.java
+│   │   │                   │   └── persistence
+│   │   │                   │       ├── VectorConverter.java
+│   │   │                   │       ├── entity
+│   │   │                   │       │   ├── BlogPostChunkJpaEntity.java
+│   │   │                   │       │   └── BlogPostJpaEntity.java
+│   │   │                   │       ├── jpa
+│   │   │                   │       │   ├── BlogPostChunkJpaRepository.java
+│   │   │                   │       │   └── BlogPostJpaRepository.java
+│   │   │                   │       ├── mapper
+│   │   │                   │       │   ├── BlogPostChunkPersistenceMapper.java
+│   │   │                   │       │   └── BlogPostPersistenceMapper.java
+│   │   │                   │       └── repository
+│   │   │                   │           ├── JpaBlogPostChunkRepository.java
+│   │   │                   │           └── JpaBlogPostRepository.java
+│   │   │                   └── job
+│   │   │                       └── config
+│   │   │                           └── BlogCatalogSyncJobConfig.java
+│   │   └── resources
+│   │       ├── application.yaml
+│   │       └── db
+│   │           └── sql
+│   │               └── init.sql
 ```
 
+<h2> 6. 레포지토리 </h2>
 
-<h2>4. 수집 전략</h2>
-
-수집 전략은 깃블로그 사이트(jekyll, chirpy 사용)에서 자동으로 생성되는 `/my-sitemap.xml` 파일에서 게시글 목록과 기본 정보를 먼저 수집하는 것이다.
-이후 각 게시글 페이지에 접근하여 `Jsoup`으로 본문과 메타데이터를 파싱하고, 파싱한 원문은 `DB`에 저장한다.
-추가로 원문을 임베딩하여 생성한 벡터 데이터는 `Vector DB`에 저장해, 이후 검색이나 `RAG`에 활용할 수 있도록 한다.
-
-고려해야 할 사항. 이미 수집된 블로그 글은 수집되지 않아야함.
-수정된 글은 다시 임배딩을 해야함.
-수정된 글은 원문 테이블에 다시 update를 해야함.
-
-`BlogPost` 엔티티 구조
-
-
-
-- 고려해야 했던것
-  - 블로그글이 updated 되었을 때?
-    - jekyll chirpy 프레임 워크 공통 설정에 front matter에 커스텀 데이터를 meta 에 포함시킨다.
-  - 블로그 글 수집은 어떻게?
-    - jekyll chirpy 에서 자동으로 생성되는 my-sitemap.xml 링크에서 블로그 url 을 리스트업.
-    - 리스트업한 url 을 배치 프로그램 안에서 아래의 요소 추출후 원문 데이터 RDB 저장
-      - title
-      - description
-      - date
-      - updated
-      - categories
-      - tags
-  - chunk는 어떻게?
-    - jekyll chirpy 에서 `##`으로 표현된 행은 html로 변환될때 h2 태그로 변환된다
-    - H2 태그 기준으로 1차로 나누고 너무 긴 내용들은 휴리스틱으로 잘라서 구분한다.
-  - chunk 데이터를 ollama 에 임베딩 api를 호출해서 벡터화된 데이터를 가져온다.
-  - 백터화된 데이터를 가지고 JpaEntity를 구성해서 vector 테이블에 저장한다.(pgvector를 사용한다.)
-
-- 나중에 더 생각해야될것
-  - 코드 블록은 항상 길이가 길기 때문에 휴리스틱에 의해 마구잡이로 깨져서 인베딩된다. 어떻게 할지 고민 필요.(나중에)
+링크 : [https://github.com/AngryPig123/ai-agent-batch](https://github.com/AngryPig123/ai-agent-batch)
