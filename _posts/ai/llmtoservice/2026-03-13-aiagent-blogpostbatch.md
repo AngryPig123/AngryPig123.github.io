@@ -1,5 +1,5 @@
 ---
-title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 데이터 준비하기 (1)
+title: 블로그 글 수집 배치 만들기 — Spring Batch로 AI Agent용 수집 임베딩 구조 구현 및 회고
 description: 블로그 QA Agent가 사용할 데이터를 만들기 위해 Spring Batch 프로젝트를 생성하고 글 수집 구조를 설계한다.
 date: 2026-03-13T16:00:00+09:00
 updated: 2026-03-16T22:00:00+09:00
@@ -122,92 +122,93 @@ dependencies {
 <h2> 5. 프로젝트 구조 </h2>
 
 설계 및 구조 : `DDD + Hexagonal Architecture`
-
-
-```
-├── src
-│   ├── main
-│   │   ├── generated
-│   │   ├── java
-│   │   │   └── com
-│   │   │       └── ai
-│   │   │           └── agent
-│   │   │               └── batch
-│   │   │                   ├── AiAgentBatchApplication.java
-│   │   │                   ├── application
-│   │   │                   │   ├── dto
-│   │   │                   │   │   ├── BlogChunk.java
-│   │   │                   │   │   ├── BlogPostSnapshot.java
-│   │   │                   │   │   ├── EmbeddedChunk.java
-│   │   │                   │   │   ├── H2Section.java
-│   │   │                   │   │   └── VectorBlogPostSnapshot.java
-│   │   │                   │   ├── mapper
-│   │   │                   │   │   └── BlogPostApplicationMapper.java
-│   │   │                   │   ├── port
-│   │   │                   │   │   └── out
-│   │   │                   │   │       ├── BlogPostChunker.java
-│   │   │                   │   │       ├── BlogPostParser.java
-│   │   │                   │   │       ├── BlogPostRepository.java
-│   │   │                   │   │       ├── BlogSourceClient.java
-│   │   │                   │   │       ├── EmbeddingPort.java
-│   │   │                   │   │       └── VectorDBBlogPostRepository.java
-│   │   │                   │   ├── service
-│   │   │                   │   │   ├── BlogCatalogSyncService.java
-│   │   │                   │   │   └── BlogEmbeddingSyncService.java
-│   │   │                   │   └── usecase
-│   │   │                   │       ├── SyncBlogCatalogUseCase.java
-│   │   │                   │       └── SyncBlogEmbeddingUseCase.java
-│   │   │                   ├── common
-│   │   │                   │   └── domain
-│   │   │                   │       └── model
-│   │   │                   │           ├── AggregateRoot.java
-│   │   │                   │           ├── BaseEntity.java
-│   │   │                   │           ├── BaseId.java
-│   │   │                   │           └── DomainException.java
-│   │   │                   ├── domain
-│   │   │                   │   ├── exception
-│   │   │                   │   │   └── BlogPostBatchDomainException.java
-│   │   │                   │   └── model
-│   │   │                   │       ├── BlogPost.java
-│   │   │                   │       ├── BlogPostChunk.java
-│   │   │                   │       ├── BlogPostChunkId.java
-│   │   │                   │       └── BlogPostId.java
-│   │   │                   ├── infrastructure
-│   │   │                   │   ├── chunk
-│   │   │                   │   │   └── JekyllBlogPostChunker.java
-│   │   │                   │   ├── client
-│   │   │                   │   │   └── JekyllSitemapClient.java
-│   │   │                   │   ├── config
-│   │   │                   │   │   ├── AsyncConfig.java
-│   │   │                   │   │   └── CommonConfig.java
-│   │   │                   │   ├── embed
-│   │   │                   │   │   └── NomicEmbeddingAdapter.java
-│   │   │                   │   ├── parser
-│   │   │                   │   │   └── JsoupBlogPostParser.java
-│   │   │                   │   └── persistence
-│   │   │                   │       ├── VectorConverter.java
-│   │   │                   │       ├── entity
-│   │   │                   │       │   ├── BlogPostChunkJpaEntity.java
-│   │   │                   │       │   └── BlogPostJpaEntity.java
-│   │   │                   │       ├── jpa
-│   │   │                   │       │   ├── BlogPostChunkJpaRepository.java
-│   │   │                   │       │   └── BlogPostJpaRepository.java
-│   │   │                   │       ├── mapper
-│   │   │                   │       │   ├── BlogPostChunkPersistenceMapper.java
-│   │   │                   │       │   └── BlogPostPersistenceMapper.java
-│   │   │                   │       └── repository
-│   │   │                   │           ├── JpaBlogPostChunkRepository.java
-│   │   │                   │           └── JpaBlogPostRepository.java
-│   │   │                   └── job
-│   │   │                       └── config
-│   │   │                           └── BlogCatalogSyncJobConfig.java
-│   │   └── resources
-│   │       ├── application.yaml
-│   │       └── db
-│   │           └── sql
-│   │               └── init.sql
-```
-
-<h2> 6. 레포지토리 </h2>
-
 링크 : [https://github.com/AngryPig123/ai-agent-batch](https://github.com/AngryPig123/ai-agent-batch)
+
+
+<h2> 6. 구현된 부분과 힘들었던 점, 앞으로 추가할 작업 </h2>
+
+현재까지 구현된 기능은 다음과 같다.
+
+- 페이지 단위 블로그 글 링크 수집
+- 게시된 글 원문 저장
+- 원문 데이터에 대한 `chunk` 전략 수립
+- `chunk` 데이터 임베딩 및 `Vector DB` 저장
+
+현재는 서버를 항상 실행해 두고 주기적으로 배치를 돌리기에는 아직 이른 단계라고 판단하여,
+데이터 수집과 임베딩은 수동으로 실행하는 방식으로 진행하고 있다.
+
+서비스 규모가 작고,
+블로그 글의 변경도 자주 발생하지 않는 상태이기 때문에
+지금 단계에서 스케줄 기반 배치를 구성하는 것은 과하다고 느꼈다.
+
+추후 `Agent` 서비스의 규모가 커지고,
+데이터가 지속적으로 추가되는 구조가 되면
+그때 자연스럽게 스케줄 기반 배치로 전환할 예정이다.
+
+구현 과정에서는 예상보다 고민할 부분이 많았고,
+몇 가지 문제를 해결하면서 구조를 조금씩 수정하게 되었다.
+
+
+<h3> 6.1 이해도 문제 </h3>
+
+이번 프로젝트는 말 그대로 거의 맨땅에서 직접 `AI Agent`를 만들어보는 과정에 가까웠다.
+그래서 큰 구조나 전체 흐름에 대한 감은 어느 정도 있었지만,
+실제로 구현 단계에서 어떤 세부 사항까지 고려해야 하는지는 충분히 알지 못한 상태였다.
+
+예를 들어 `chunk` 전략을 어떻게 가져갈지,
+`Vector DB`를 어떤 방식으로 적용할지 같은 부분은
+서비스를 만들면서 여러 자료를 찾아보고 이해하는 데 꽤 많은 시간이 필요했다.
+
+개인적으로는 어느 정도 납득할 수 있는 수준까지 이해가 되어야
+다음 구현으로 넘어갈 수 있는 성향이 있어서,
+이 과정이 더 오래 걸렸던 것 같다.
+
+다만 이런 시행착오 역시 학습 과정에서는 자연스러운 부분이라고 생각한다.
+그래서 지금 서비스 구조를 만드는 데 꼭 필요한 내용이 아니라면
+우선 기록만 남겨두고,
+다음 프로젝트에서 다시 꺼내어 더 깊게 적용해보는 방향으로 정리하고 있다.
+
+
+<h3> 6.2 블로그 글 변경 여부 판단 문제 </h3>
+
+블로그 글을 수집하는 것 자체는 어렵지 않았지만,
+`Jekyll Chirpy` 블로그 특성상 게시글의 내용이 변경되었는지를 판단하는 부분에서 고민이 있었다.
+
+처음에는 `content hash`를 이용해서 변경 여부를 판단하는 방법을 생각했지만,
+본문 전체를 기준으로 해시를 만들 경우 단순 오탈자 수정이나 공백 변경 같은 사소한 수정에도
+모든 글이 변경된 것으로 처리된다는 문제가 있었다.
+
+그래서 자동으로 변경을 감지하는 방식보다는,
+작성자가 직접 업데이트 시점을 명시하도록 하는 방식이 더 적절하다고 판단했다.
+
+이 과정에서 게시글의 헤더 메타 영역에
+업데이트 시점을 저장할 수 있도록 필드를 추가하게 되었다.
+
+
+<h3> 6.3 배치 전략에 대한 고민 </h3>
+
+데이터 수집, 저장, 임베딩까지 필요한 배치 구성은 모두 완료된 상태이지만,
+실제로 어떤 방식으로 배치를 운영할지에 대한 전략은 아직 정하지 못했다.
+
+현재는 수동 실행으로 충분하지만,
+앞으로는 다음과 같은 기준이 필요할 것 같다.
+
+- 전체 재수집을 할 것인지
+- 변경된 글만 다시 임베딩할 것인지
+- 일정 주기로 자동 실행할 것인지
+- 수동 실행을 유지할 것인지
+
+서비스 규모가 커질수록 배치 전략도 함께 정리해야 할 부분이라고 생각한다.
+
+
+<h3> 6.4 Vector DB 연동 시 JPA 설정 문제 </h3>
+
+`Vector DB`와 연동되는 필드를 `JPA` 엔티티에 추가하는 과정에서,
+추가 의존성이 필요하다는 사실을 몰라 예상보다 많은 시간을 사용했다.
+
+특히 벡터 타입 필드를 사용하려면
+기본 `JPA` 설정만으로는 동작하지 않았고,
+`Vector DB`와 연동되는 라이브러리를 추가해야 정상적으로 매핑할 수 있었다.
+
+단순한 설정 문제였지만,
+처음 사용하는 구조이다 보니 원인을 찾는 데 시간이 오래 걸렸다.
