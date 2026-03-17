@@ -2,7 +2,7 @@
 title: AI Agent 프로젝트에 데이터 베이스 연결하기 작성중 ....
 description: 배치 프로그램에서 수집한 데이터에 접근할 수 있게 설정한다.
 date: 2026-03-16T22:30:00+09:00
-date: 2026-03-16T22:30:00+09:00
+updated: 2026-03-16T22:30:00+09:00
 categories: [AI, AI Agent]
 tags: [AI, LLM, AI Agent, Python DB 연결, Hexagonal Architecture, DDD]
 ---
