@@ -7,7 +7,7 @@ categories: [AI, AI Agent]
 tags: [AI, AI Agent, Spring Batch, Batch, Ingestion, RAG, Embedding, Chunk]
 ---
 
-<h2> 1. 구성하게 된 이유 </h2>
+<h2> 1. 작성하게 된 이유 </h2>
 
 `AI Agent`를 구현하면서 `Tool` 목록을 정리하다 보니,  
 먼저 `Agent`가 조회하고 활용할 수 있는 데이터가 준비되어 있어야 한다고 판단했다.
