@@ -24,68 +24,24 @@ tags: [AI, AI Agent, PostgreSQL, pgvector, VectorDB, Docker]
 `Docker` 기반으로 `DB` 환경을 먼저 구성한다.
 
 
-- 구조
-
-```
-postgres-pgvector/
-├─ docker-compose.yml
-├─ Dockerfile
-└─ initdb/
-   └─ 01-init.sql
-```
-
-- `DockerFile`
-
-```docker
-FROM postgres:16
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-       build-essential \
-       git \
-       ca-certificates \
-       postgresql-server-dev-16 \
-    && git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git /tmp/pgvector \
-    && cd /tmp/pgvector \
-    && make \
-    && make install \
-    && rm -rf /tmp/pgvector \
-    && apt-get remove -y git build-essential postgresql-server-dev-16 \
-    && apt-get autoremove -y \
-    && rm -rf /var/lib/apt/lists/*
-```
-
-
 - `docker-compose.yml`
 
 ```docker
 services:
   postgres:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: pgvector/pgvector:pg16
     container_name: postgres-pgvector
-    restart: always
     environment:
-      POSTGRES_USER: {POSTGRES_USER}
-      POSTGRES_PASSWORD: {POSTGRES_PASSWORD}
-      POSTGRES_DB: {POSTGRES_DB}
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: appdb
     ports:
-      - "5432:5432"
-    volumes:
-      - {postgres-local-volume}:/var/lib/postgresql/data
-      - {initdb-local-volume}:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U appuser -d appdb"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - "5433:5432"
 
 volumes:
   postgres_data:
 ```
 
-- `initdb/01-init.sql`
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS vector;
