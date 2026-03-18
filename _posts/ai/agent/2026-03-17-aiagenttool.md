@@ -2,7 +2,7 @@
 title: AI Agent 정리 (2) - Tool 개념, 구성요소
 description: AI Agetn 프로젝트를 맨땅에 개발하며 알아야될 개념중 Tool에 대한 내용을 구현 초점에 맞춰서 정리한 글
 date: 2026-03-17T17:00:00+09:00
-updated: 2026-17-09T17:00:00+09:00
+updated: 2026-03-17T17:00:00+09:00
 categories: [AI, AI Agent, Tool]
 tags: [AI ,AI Agent, Multi Agent, Tool]
 ---
