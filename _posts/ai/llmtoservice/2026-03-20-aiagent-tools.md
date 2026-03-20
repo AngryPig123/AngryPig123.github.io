@@ -249,7 +249,53 @@ Tool 사이의 관계였다
 다음 단계인 `Agent` 구조로 자연스럽게 넘어갈 준비가 되었다.
 
 
+--- 
+
+
+
+
 - 리펙토링 전 : [https://github.com/AngryPig123/ai-agent/tree/tool/summary-answerdraft-before](https://github.com/AngryPig123/ai-agent/tree/tool/summary-answerdraft-before)
+
+`service` 코드
+
+```python
+class BlogAnswerService(UserAnswerUseCase):
+
+    def __init__(
+            self,
+            search_blog_tool: SearchBlogTool,
+            llm: LLMPort,
+            prompt_builder: SearchBlogPromptBuilder,
+    ):
+        self.search_blog_tool = search_blog_tool
+        self.llm = llm
+        self.prompt_builder = prompt_builder
+
+    def execute(self, text: str) -> str:
+        context = ToolContext(
+            agent_id="blog-answer-agent",
+            session_id="blog-answer-session",
+            user_id="anonymous",
+            trace_id=str(uuid.uuid4())
+        )
+
+        tool_result = self.search_blog_tool.execute(
+            input_data={"query": text},
+            context=context,
+        )
+
+        if not tool_result.success:
+            return f"블로그 게시글 조회 중 오류가 발생했습니다: {tool_result.error}"
+
+        references = tool_result.data.get("posts", [])
+
+        prompt = self.prompt_builder.build(
+            question=text,
+            references=references,
+        )
+
+        return self.llm.generate(prompt)
+```
 
 구조
 
@@ -338,6 +384,51 @@ Tool 사이의 관계였다
 ```
 
 - 리펙토링 후 : [https://github.com/AngryPig123/ai-agent/tree/tool/summary-answerdraft-after](https://github.com/AngryPig123/ai-agent/tree/tool/summary-answerdraft-after)
+
+
+`service` 코드
+
+```python
+class BlogAnswerService(UserAnswerUseCase):
+    def __init__(
+            self,
+            search_blog_tool: SearchBlogTool,
+            answer_draft_tool: AnswerDraftTool,
+            summarize_context_tool: SummarizeContextTool,
+    ):
+        self.search_blog_tool = search_blog_tool
+        self.answer_draft_tool = answer_draft_tool
+        self.summarize_context_tool = summarize_context_tool
+    def execute(self, text: str) -> str:
+        context = ToolContext(
+            agent_id="blog-answer-agent",
+            session_id="blog-answer-session",
+            user_id="anonymous",
+            trace_id=str(uuid.uuid4())
+        )
+        search_blog_tool_result = self.search_blog_tool.execute(
+            input_data={"query": text},
+            context=context,
+        )
+        blog_posts = search_blog_tool_result.data.get("posts", [])
+        summarize_context_tool_result = self.summarize_context_tool.execute(
+            input_data={"query": blog_posts},
+            context=context
+        )
+        summary = summarize_context_tool_result.data.get("summary")
+        input_data = {
+            "question": text,
+            "references": blog_posts,
+            "summary": summary
+        }
+        answer_draft_tool_result = self.answer_draft_tool.execute(
+            input_data={
+                "query": input_data
+            },
+            context=context
+        )
+        return answer_draft_tool_result.data.get("answer")
+```
 
 구조
 
